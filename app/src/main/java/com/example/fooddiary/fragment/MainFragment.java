@@ -16,11 +16,9 @@ import android.widget.TextView;
 
 import com.example.fooddiary.R;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements View.OnClickListener {
 
     NavController navController;
-    Button button;
-    TextView textView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,8 +31,20 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        button = view.findViewById(R.id.btnLogin);
-        textView = view.findViewById(R.id.txtRegister);
-        //button.setOnClickListener();
+        view.findViewById(R.id.btnLogin).setOnClickListener(this);
+        view.findViewById(R.id.txtRegister).setOnClickListener(this);
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btnLogin:
+                navController.navigate(R.id.action_mainFragment_to_loginFragment);
+                break;
+            case R.id.txtRegister:
+                navController.navigate(R.id.action_mainFragment_to_registerFragment);
+                break;
+        }
     }
 }
