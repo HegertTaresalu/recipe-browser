@@ -11,4 +11,4 @@ Meeskonnas on Hegert Taresalu (juht), Hendris Määr ja Kadi-Katre Kõpper
 
 Kuidas käivatada?
 ==================
-Rakendust peab alla tõmbama Android telefonile, läbi selle on võimalik käivitada seda.
+Arendamiseks kasutasime Android Studiot
