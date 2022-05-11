@@ -48,7 +48,7 @@ public class AuthRepository {
 
     //method for registering email
     @SuppressLint("NewApi")
-    public void userRegistration(String firstName, String lastName, String email, String password){
+    public void userRegistration(String firstName, String lastName, String email,String username, String password){
         firebaseAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(application.getMainExecutor(), task -> {
 
@@ -62,6 +62,7 @@ public class AuthRepository {
                             user.put("firstName", firstName);
                             user.put("lastName", lastName);
                             user.put("email", email);
+                            user.put("username",username);
                             documentReference.set(user).addOnSuccessListener(aVoid -> Log.i(TAG, "onSuccess:user data was saved"))
                                     .addOnFailureListener(e -> Log.e(TAG, "onFailure: error writing to db"));
                             userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
