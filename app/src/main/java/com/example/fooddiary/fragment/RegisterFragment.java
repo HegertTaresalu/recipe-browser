@@ -13,10 +13,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fooddiary.R;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterFragment extends Fragment implements View.OnClickListener {
 
     NavController navController;
+    TextInputLayout firstName;
+    TextInputLayout surName;
+    TextInputLayout email;
+    TextInputLayout username;
+    TextInputLayout password;
+    TextInputLayout passwordVerify;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,11 +39,18 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
+        firstName = view.findViewById(R.id.inpLayFirstname);
+        surName = view.findViewById(R.id.inpLaySurname);
+        email= view.findViewById(R.id.inpLayEmail);
+        username = view.findViewById(R.id.inpLayUsername);
+        password = view.findViewById(R.id.inpLayPass);
+        passwordVerify = view.findViewById(R.id.inpLayVerifyPass);
         view.findViewById(R.id.btnCompleteRegister).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
+        Snackbar.make(view,firstName.getEditText().getText().toString(),Snackbar.LENGTH_SHORT).show();
         switch (view.getId()){
             case R.id.btnCompleteRegister:
                 navController.navigate(R.id.action_registerFragment_to_loginFragment);
