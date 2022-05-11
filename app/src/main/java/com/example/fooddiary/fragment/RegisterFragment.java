@@ -37,6 +37,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()){
             case R.id.btnCompleteRegister:
                 navController.navigate(R.id.action_registerFragment_to_loginFragment);
+                break;
         }
     }
 }

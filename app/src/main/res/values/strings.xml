@@ -9,4 +9,8 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <!-- Strings related to calendar-->
+    <string name="p_note_helper">Write a personal note alongside the dish\'s recipe!</string>
+    <string name="add_to_calendar">Add recipe to calendar</string>
+    <string name="error_intent">You are missing an app that supports this feature.</string>
 </resources>

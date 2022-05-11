@@ -3,12 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/opilane/AndroidStudioProjects/FoodDiary/app/src/main/res/layout/activity_main.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/terviseapp/app/src/main/res/layout/activity_main.xml" value="0.1661600810536981" />
+        <entry key="..\:/Users/opilane/AndroidStudioProjects/terviseapp/app/src/main/res/layout/fragment_calendar.xml" value="0.1" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/terviseapp/app/src/main/res/layout/fragment_login.xml" value="0.371875" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/terviseapp/app/src/main/res/layout/fragment_main.xml" value="0.25" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/terviseapp/app/src/main/res/layout/fragment_recovery.xml" value="0.371875" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/terviseapp/app/src/main/res/layout/fragment_register.xml" value="0.25" />
-        <entry key="..\:/Users/opilane/AndroidStudioProjects/FoodDiary/app/src/main/res/layout/activity_main.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/opilane/AndroidStudioProjects/terviseapp/app/src/main/res/layout/fragment_verified.xml" value="0.371875" />
       </map>
     </option>
