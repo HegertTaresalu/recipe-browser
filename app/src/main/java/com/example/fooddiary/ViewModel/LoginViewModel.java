@@ -44,4 +44,9 @@ public class LoginViewModel extends AndroidViewModel {
         authRepository.resetPassword(email) ;
     }
 
+
+    public void logout(){
+        authRepository.logOut();
+    }
+
 }

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.fooddiary.R;
 import com.example.fooddiary.ViewModel.LoginViewModel;
 import com.example.fooddiary.ViewModel.UserViewModel;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
@@ -54,8 +55,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        emailInput = view.findViewById(R.id.inpLayEmail);
-        passwordInput = view.findViewById(R.id.inpLayPass);
+        emailInput = view.findViewById(R.id.etEmail);
+        passwordInput = view.findViewById(R.id.etPassword);
         view.findViewById(R.id.btnSignIn).setOnClickListener(this);
         view.findViewById(R.id.txtForgotPass).setOnClickListener(this);
     }
@@ -66,6 +67,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             case R.id.btnSignIn:
                 String email = Objects.requireNonNull(emailInput.getEditText()).getText().toString();
                 String password = Objects.requireNonNull(passwordInput.getEditText()).getText().toString();
+                Snackbar.make(view,password,Snackbar.LENGTH_SHORT).show();
+
                 loginViewModel.Login(email,password);
                 navController.navigate(R.id.action_loginFragment_to_verifiedFragment);
                 break;

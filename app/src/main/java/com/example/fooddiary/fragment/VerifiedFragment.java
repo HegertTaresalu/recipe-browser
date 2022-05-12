@@ -39,6 +39,8 @@ public class VerifiedFragment extends Fragment implements View.OnClickListener {
             case R.id.btnCalendar:
                 navController.navigate(R.id.action_verifiedFragment_to_calendarFragment);
                 break;
+            case  R.id.log_out:
+
         }
     }
 }

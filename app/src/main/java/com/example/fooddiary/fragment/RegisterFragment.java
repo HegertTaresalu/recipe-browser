@@ -69,12 +69,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        firstNameTextInput = view.findViewById(R.id.inpLayFirstname);
-        surNameTextInput = view.findViewById(R.id.inpLaySurname);
-        emailTextInput= view.findViewById(R.id.inpLayEmail);
-        usernameTextInput = view.findViewById(R.id.inpLayUsername);
-        passwordTextInput = view.findViewById(R.id.inpLayPass);
-        passwordVerifyTextInput = view.findViewById(R.id.inpLayVerifyPass);
+        firstNameTextInput = view.findViewById(R.id.etFirstName);
+        surNameTextInput = view.findViewById(R.id.etSurname);
+        emailTextInput= view.findViewById(R.id.etRegisterEmail);
+        usernameTextInput = view.findViewById(R.id.etUsername);
+        passwordTextInput = view.findViewById(R.id.etRegisterPassword);
+        passwordVerifyTextInput = view.findViewById(R.id.etVerifyPass);
         view.findViewById(R.id.btnCompleteRegister).setOnClickListener(this);
 
 

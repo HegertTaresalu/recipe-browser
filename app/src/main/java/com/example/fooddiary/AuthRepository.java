@@ -94,7 +94,7 @@ public class AuthRepository {
                         userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
                     }
                     else{
-                        Toast.makeText(application, application.getString(R.string.error, task.getException().getMessage()), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(application, application.getString(R.string.error, task.getException().getMessage()), Toast.LENGTH_SHORT).show();
                     }
                 });
 

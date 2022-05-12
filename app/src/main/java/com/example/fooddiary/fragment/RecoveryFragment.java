@@ -47,7 +47,7 @@ public class RecoveryFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
         view.findViewById(R.id.btnRecover).setOnClickListener(this);
-        emailInput = view.findViewById(R.id.inpLayEmail);
+        emailInput = view.findViewById(R.id.etRecoverEmail);
         recoverBtn = view.findViewById(R.id.btnRecover);
 
     }
