@@ -56,13 +56,13 @@ public class RecoveryFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnRecover:
-                navController.navigate(R.id.action_recoveryFragment_to_loginFragment2);
-                break;
                 String email = emailInput.getEditText().getText().toString();
                 if (isValidEmail(email)){
                     loginViewModel.resetPassword(email);
                     navController.navigate(R.id.action_recoveryFragment_to_loginFragment2);
                 }
+
+                break;
 
         }
     }

@@ -4,6 +4,7 @@ import static com.example.fooddiary.ValidInputControl.isValidEmail;
 import static com.example.fooddiary.ValidInputControl.isValidPassword;
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -89,8 +90,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         String passwordVerify = passwordTextInput.getEditText().getText().toString();
         switch (view.getId()){
             case R.id.btnCompleteRegister:
-                navController.navigate(R.id.action_registerFragment_to_loginFragment);
-                break;
         if (isValidEmail(email) && isValidPassword(password) && password.equals(passwordVerify) && !firstName.isEmpty() && !surName.isEmpty() && !userName.isEmpty()  ){
             loginViewModel.userRegistration(firstName,surName,email,userName,password);
             navController.navigate(R.id.action_registerFragment_to_loginFragment);
