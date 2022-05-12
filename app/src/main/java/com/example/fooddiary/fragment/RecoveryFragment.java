@@ -1,5 +1,7 @@
 package com.example.fooddiary.fragment;
 
+import static com.example.fooddiary.ValidInputControl.isValidEmail;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -55,8 +57,11 @@ public class RecoveryFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()){
             case R.id.btnRecover:
                 String email = emailInput.getEditText().getText().toString();
-                loginViewModel.resetPassword(email);
-                navController.navigate(R.id.action_recoveryFragment_to_loginFragment2);
+                if (isValidEmail(email)){
+                    loginViewModel.resetPassword(email);
+                    navController.navigate(R.id.action_recoveryFragment_to_loginFragment2);
+                }
+
         }
     }
 }
