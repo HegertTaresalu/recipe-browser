@@ -62,6 +62,8 @@ public class RecoveryFragment extends Fragment implements View.OnClickListener {
                     navController.navigate(R.id.action_recoveryFragment_to_loginFragment2);
                 }
 
+                break;
+
         }
     }
 }
