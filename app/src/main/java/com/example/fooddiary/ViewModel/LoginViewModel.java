@@ -30,10 +30,18 @@ public class LoginViewModel extends AndroidViewModel {
 
         return userMutableData;
     }
+    public void Login(String email, String password){
+        authRepository.logIn(email,password);
+    }
+
 
     public void userRegistration(String firstName, String surName, String email,String username,String password){
     authRepository.userRegistration(firstName,surName,email,username,password);
 
+    }
+
+    public void resetPassword(String email){
+        authRepository.resetPassword(email) ;
     }
 
 }

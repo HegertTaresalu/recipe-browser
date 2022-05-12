@@ -22,6 +22,8 @@ import com.example.fooddiary.ViewModel.UserViewModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Objects;
+
 public class RegisterFragment extends Fragment implements View.OnClickListener {
     private LoginViewModel loginViewModel;
     private UserViewModel userViewModel;
@@ -79,11 +81,11 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        String firstName = firstNameTextInput.getEditText().getText().toString();
-        String surName = surNameTextInput.getEditText().getText().toString();
-        String email = emailTextInput.getEditText().getText().toString();
-        String userName = usernameTextInput.getEditText().getText().toString();
-        String password = passwordTextInput.getEditText().getText().toString();
+        String firstName = Objects.requireNonNull(firstNameTextInput.getEditText()).getText().toString();
+        String surName = Objects.requireNonNull(surNameTextInput.getEditText()).getText().toString();
+        String email = Objects.requireNonNull(emailTextInput.getEditText()).getText().toString();
+        String userName = Objects.requireNonNull(usernameTextInput.getEditText()).getText().toString();
+        String password = Objects.requireNonNull(passwordTextInput.getEditText()).getText().toString();
         String passwordVerify = passwordTextInput.getEditText().getText().toString();
         switch (view.getId()){
             case R.id.btnCompleteRegister:
@@ -115,7 +117,11 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 Snackbar.make(view,"Multiple inputs are not valid",Snackbar.LENGTH_SHORT).show();
             }
 
+
+            break;
         }
+
+
 
         }
     }
