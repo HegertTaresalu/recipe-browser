@@ -1,7 +1,9 @@
 package com.example.fooddiary.fragment;
 
-import android.os.Bundle;
+import static com.example.fooddiary.ValidInputControl.isValidEmail;
+import static com.example.fooddiary.ValidInputControl.isValidPassword;
 
+import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -24,12 +26,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     private LoginViewModel loginViewModel;
     private UserViewModel userViewModel;
     NavController navController;
-    TextInputLayout firstName;
-    TextInputLayout surName;
-    TextInputLayout email;
-    TextInputLayout username;
-    TextInputLayout password;
-    TextInputLayout passwordVerify;
+    TextInputLayout firstNameTextInput;
+    TextInputLayout surNameTextInput;
+    TextInputLayout emailTextInput;
+    TextInputLayout usernameTextInput;
+    TextInputLayout passwordTextInput;
+    TextInputLayout passwordVerifyTextInput;
 
 
     @Override
@@ -64,22 +66,57 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        firstName = view.findViewById(R.id.inpLayFirstname);
-        surName = view.findViewById(R.id.inpLaySurname);
-        email= view.findViewById(R.id.inpLayEmail);
-        username = view.findViewById(R.id.inpLayUsername);
-        password = view.findViewById(R.id.inpLayPass);
-        passwordVerify = view.findViewById(R.id.inpLayVerifyPass);
+        firstNameTextInput = view.findViewById(R.id.inpLayFirstname);
+        surNameTextInput = view.findViewById(R.id.inpLaySurname);
+        emailTextInput= view.findViewById(R.id.inpLayEmail);
+        usernameTextInput = view.findViewById(R.id.inpLayUsername);
+        passwordTextInput = view.findViewById(R.id.inpLayPass);
+        passwordVerifyTextInput = view.findViewById(R.id.inpLayVerifyPass);
         view.findViewById(R.id.btnCompleteRegister).setOnClickListener(this);
+
+
     }
 
     @Override
     public void onClick(View view) {
-        Snackbar.make(view,firstName.getEditText().getText().toString(),Snackbar.LENGTH_SHORT).show();
+        String firstName = firstNameTextInput.getEditText().getText().toString();
+        String surName = surNameTextInput.getEditText().getText().toString();
+        String email = emailTextInput.getEditText().getText().toString();
+        String userName = usernameTextInput.getEditText().getText().toString();
+        String password = passwordTextInput.getEditText().getText().toString();
+        String passwordVerify = passwordTextInput.getEditText().getText().toString();
         switch (view.getId()){
             case R.id.btnCompleteRegister:
-                loginViewModel.userRegistration(firstName.getEditText().getText().toString(),surName.getEditText().getText().toString(),email.getEditText().getText().toString(),username.getEditText().getText().toString(),password.getEditText().getText().toString());
-                navController.navigate(R.id.action_registerFragment_to_loginFragment);
+        if (isValidEmail(email) && isValidPassword(password) && password.equals(passwordVerify) && !firstName.isEmpty() && !surName.isEmpty() && !userName.isEmpty()  ){
+            loginViewModel.userRegistration(firstName,surName,email,userName,password);
+            navController.navigate(R.id.action_registerFragment_to_loginFragment);
+        }
+        else{
+            if (firstName.isEmpty()){
+                Snackbar.make(view, "First name field is empty",Snackbar.LENGTH_SHORT).show();
+
+            }
+            else if (surName.isEmpty()){
+                Snackbar.make(view, "Last name field is empty",Snackbar.LENGTH_SHORT).show();
+
+
+            }
+            else if (!isValidEmail(email)){
+                Snackbar.make(view,"Email is not valid", Snackbar.LENGTH_SHORT).show();
+            }
+            else if (!isValidPassword(password)){
+                Snackbar.make(view,"Password is not valid",Snackbar.LENGTH_SHORT).show();
+            }
+            else if (!password.equals(passwordVerify) ){
+                Snackbar.make(view,"passwords do not match",Snackbar.LENGTH_SHORT).show();
+
+            }
+            else{
+                Snackbar.make(view,"Multiple inputs are not valid",Snackbar.LENGTH_SHORT).show();
+            }
+
+        }
+
         }
     }
 }

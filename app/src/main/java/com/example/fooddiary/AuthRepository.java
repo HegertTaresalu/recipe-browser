@@ -60,7 +60,7 @@ public class AuthRepository {
                             DocumentReference documentReference = db.collection("users").document(userId);
                             Map<String, Object> user = new HashMap<>();
                             user.put("firstName", firstName);
-                            user.put("lastName", lastName);
+                            user.put("surname", lastName);
                             user.put("email", email);
                             user.put("username",username);
                             documentReference.set(user).addOnSuccessListener(aVoid -> Log.i(TAG, "onSuccess:user data was saved"))
