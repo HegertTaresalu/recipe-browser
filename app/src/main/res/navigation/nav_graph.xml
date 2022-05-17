@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_verifiedFragment_to_calendarFragment"
             app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_verifiedFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"

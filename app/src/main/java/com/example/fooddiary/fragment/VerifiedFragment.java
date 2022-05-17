@@ -42,6 +42,7 @@ public class VerifiedFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
         view.findViewById(R.id.btnCalendar).setOnClickListener(this);
+        view.findViewById(R.id.log_out).setOnClickListener(this);
     }
 
 
@@ -54,7 +55,7 @@ public class VerifiedFragment extends Fragment implements View.OnClickListener {
                 break;
             case  R.id.log_out:
                 loginViewModel.logout();
-
+                navController.navigate(R.id.action_verifiedFragment_to_mainFragment);
 
 
 
