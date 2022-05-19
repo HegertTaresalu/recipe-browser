@@ -19,6 +19,7 @@ import com.example.fooddiary.MainActivity;
 import com.example.fooddiary.R;
 public class SettingsFragment extends Fragment {
 Switch themeSwitch;
+private Boolean isChecked;
 MainActivity mainActivity;
     public SettingsFragment() {
         // Required empty public constructor
@@ -44,17 +45,25 @@ MainActivity mainActivity;
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         themeSwitch = view.findViewById(R.id.themeSwitch);
+     SharedPreferences sharedPrefs = mainActivity.getSharedPreferences("com.example.xyle", MODE_PRIVATE);
+      themeSwitch.setChecked(sharedPrefs.getBoolean("NameOfThingToSave", true));
         themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-
-                ((MainActivity) SettingsFragment.this.getActivity()).switchTheme(themeSwitch.isChecked());
+                //SharedPreferences.Editor editor =mainActivity.getSharedPreferences("com.example.xyz", MODE_PRIVATE).edit();
+                //editor.putBoolean("NameOfThingToSave", isChecked);
+                //editor.commit();
+                //((MainActivity) SettingsFragment.this.getActivity()).switchTheme();
             }
         });
 
     }
 
-
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean("switch",isChecked);
+        super.onSaveInstanceState(outState);
+    }
 
 }

@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import com.example.fooddiary.fragment.SettingsFragment;
+import android.view.View;
+import android.widget.RadioButton;
 
 public class MainActivity extends AppCompatActivity {
     int NightMode;
@@ -38,17 +38,24 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt("NightModeInt", NightMode);
         editor.apply();
     }
-    public void switchTheme(Boolean isChecked){
-        if (isChecked){
+    public void switchTheme(View view){
 
+        RadioButton darkTheme = view.findViewById(R.id.darkModeBtn);
+        RadioButton lightTheme = view.findViewById(R.id.lightModeBtn);
+        RadioButton systemDefault= view.findViewById(R.id.systemDefaultBtn);
+
+        if (darkTheme.isChecked()){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
         }
-        else{
-
+        else if (lightTheme.isChecked()){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
 
+        }
+        else if (systemDefault.isChecked()){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+
+        }
 
     }
 

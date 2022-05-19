@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mainFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_ThemeFragment"
+            app:destination="@id/ThemeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -72,4 +75,8 @@
         android:name="com.example.fooddiary.fragment.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/ThemeFragment"
+        android:name="com.example.fooddiary.fragment.ThemeFragment"
+        android:label="ThemeFragment" />
 </navigation>
