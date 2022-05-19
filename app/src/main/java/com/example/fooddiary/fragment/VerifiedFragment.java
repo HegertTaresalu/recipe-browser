@@ -29,7 +29,6 @@ public class VerifiedFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navController = Navigation.findNavController(view);
         view.findViewById(R.id.btnCalendar).setOnClickListener(this);
     }
 

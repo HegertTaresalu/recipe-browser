@@ -25,9 +25,6 @@
         <action
             android:id="@+id/action_loginFragment_to_recoveryFragment2"
             app:destination="@id/recoveryFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_verifiedFragment"
-            app:destination="@id/verifiedFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -61,4 +58,8 @@
         android:name="com.example.fooddiary.fragment.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
+    <activity
+        android:id="@+id/navbarActivity"
+        android:name="com.example.fooddiary.NavbarActivity"
+        android:label="NavbarActivity" />
 </navigation>

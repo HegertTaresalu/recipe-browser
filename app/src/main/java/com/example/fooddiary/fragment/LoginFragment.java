@@ -1,5 +1,7 @@
 package com.example.fooddiary.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.fooddiary.MainActivity;
+import com.example.fooddiary.NavbarActivity;
 import com.example.fooddiary.R;
 import com.example.fooddiary.ViewModel.LoginViewModel;
 import com.example.fooddiary.ViewModel.UserViewModel;
@@ -28,8 +32,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private NavController navController;
     private TextInputLayout emailInput;
     private TextInputLayout passwordInput;
+    private Activity activity;
 
 
+    public void importFragment(Activity activity) {
+        this.activity = activity;
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,20 +63,23 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        emailInput = view.findViewById(R.id.inpLayEmail);
-        passwordInput = view.findViewById(R.id.inpLayPass);
+        emailInput = view.findViewById(R.id.etEmail);
+        passwordInput = view.findViewById(R.id.etPassword);
         view.findViewById(R.id.btnSignIn).setOnClickListener(this);
         view.findViewById(R.id.txtForgotPass).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
+
         switch (view.getId()){
             case R.id.btnSignIn:
-                String email = Objects.requireNonNull(emailInput.getEditText()).getText().toString();
-                String password = Objects.requireNonNull(passwordInput.getEditText()).getText().toString();
-                loginViewModel.Login(email,password);
-                navController.navigate(R.id.action_loginFragment_to_verifiedFragment);
+                //String email = Objects.requireNonNull(emailInput.getEditText()).getText().toString();
+                //String password = Objects.requireNonNull(passwordInput.getEditText()).getText().toString();
+                //loginViewModel.Login(email,password);
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), NavbarActivity.class);
+                getActivity().startActivity(intent);
                 break;
             case R.id.txtForgotPass:
                 navController.navigate(R.id.action_loginFragment_to_recoveryFragment2);

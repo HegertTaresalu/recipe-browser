@@ -2,6 +2,7 @@ package com.example.fooddiary;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -50,32 +51,33 @@ public class AuthRepository {
     }
 
     //method for registering email
-    @SuppressLint("NewApi")
     public void userRegistration(String firstName, String lastName, String email,String username, String password){
-        firebaseAuth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(application.getMainExecutor(), task -> {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            firebaseAuth.createUserWithEmailAndPassword(email,password)
+                    .addOnCompleteListener(application.getMainExecutor(), task -> {
 
-                    if (task.isSuccessful()) {
-                        if (firebaseAuth.getCurrentUser() != null) {
+                        if (task.isSuccessful()) {
+                            if (firebaseAuth.getCurrentUser() != null) {
 
-                            String userId = firebaseAuth.getCurrentUser().getUid();
-                            //Creates new collection named users if one doesn't exist into it add a new document UID reference
-                            DocumentReference documentReference = db.collection("users").document(userId);
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("firstName", firstName);
-                            user.put("surname", lastName);
-                            user.put("email", email);
-                            user.put("username",username);
-                            documentReference.set(user).addOnSuccessListener(aVoid -> Log.i(TAG, "onSuccess:user data was saved"))
-                                    .addOnFailureListener(e -> Log.e(TAG, "onFailure: error writing to db"));
-                            userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
+                                String userId = firebaseAuth.getCurrentUser().getUid();
+                                //Creates new collection named users if one doesn't exist into it add a new document UID reference
+                                DocumentReference documentReference = db.collection("users").document(userId);
+                                Map<String, Object> user = new HashMap<>();
+                                user.put("firstName", firstName);
+                                user.put("surname", lastName);
+                                user.put("email", email);
+                                user.put("username",username);
+                                documentReference.set(user).addOnSuccessListener(aVoid -> Log.i(TAG, "onSuccess:user data was saved"))
+                                        .addOnFailureListener(e -> Log.e(TAG, "onFailure: error writing to db"));
+                                userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
+                            }
                         }
-                    }
-                    else{
-                        Toast.makeText(application, application.getString(R.string.error, task.getException().getMessage()),Toast.LENGTH_SHORT).show();
-                    }
+                        else{
+                            Toast.makeText(application, application.getString(R.string.error, task.getException().getMessage()),Toast.LENGTH_SHORT).show();
+                        }
 
-                });
+                    });
+        }
 
     }
 
@@ -86,17 +88,18 @@ public class AuthRepository {
 
     }
 
-    @SuppressLint("NewApi")
     public void logIn(String email, String password){
-        firebaseAuth.signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener(application.getMainExecutor(), task -> {
-                    if (task.isSuccessful()) {
-                        userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
-                    }
-                    else{
-                        Toast.makeText(application, application.getString(R.string.error, task.getException().getMessage()), Toast.LENGTH_SHORT).show();
-                    }
-                });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            firebaseAuth.signInWithEmailAndPassword(email,password)
+                    .addOnCompleteListener(application.getMainExecutor(), task -> {
+                        if (task.isSuccessful()) {
+                            userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
+                        }
+                        else{
+                            Toast.makeText(application, application.getString(R.string.error, task.getException().getMessage()), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
 
     }
 
