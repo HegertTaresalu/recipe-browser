@@ -44,22 +44,4 @@
             android:id="@+id/action_recoveryFragment_to_loginFragment2"
             app:destination="@id/loginFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/verifiedFragment"
-        android:name="com.example.fooddiary.fragment.VerifiedFragment"
-        android:label="fragment_verified"
-        tools:layout="@layout/fragment_verified" >
-        <action
-            android:id="@+id/action_verifiedFragment_to_calendarFragment"
-            app:destination="@id/calendarFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/calendarFragment"
-        android:name="com.example.fooddiary.fragment.CalendarFragment"
-        android:label="fragment_calendar"
-        tools:layout="@layout/fragment_calendar" />
-    <activity
-        android:id="@+id/navbarActivity"
-        android:name="com.example.fooddiary.NavbarActivity"
-        android:label="NavbarActivity" />
 </navigation>

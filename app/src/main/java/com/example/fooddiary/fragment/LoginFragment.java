@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.fooddiary.MainActivity;
-import com.example.fooddiary.NavbarActivity;
+import com.example.fooddiary.fragment.NavbarActivity;
 import com.example.fooddiary.R;
 import com.example.fooddiary.ViewModel.LoginViewModel;
 import com.example.fooddiary.ViewModel.UserViewModel;

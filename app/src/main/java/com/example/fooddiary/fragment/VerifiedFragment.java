@@ -24,6 +24,7 @@ public class VerifiedFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_verified, container, false);
+
     }
 
     @Override

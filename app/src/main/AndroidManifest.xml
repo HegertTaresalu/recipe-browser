@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDiary.NoActionBar">
         <activity
+            android:name=".fragment.NavbarActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navbar"
+            android:theme="@style/Theme.FoodDiary.NoActionBar.NoActionBar" />
+        <activity
             android:name=".NavbarActivity"
-            android:exported="true" />
-        <!-- android:theme="@style/Theme.FoodDiary" -->
+            android:exported="true" /> <!-- android:theme="@style/Theme.FoodDiary" -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
