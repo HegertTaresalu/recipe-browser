@@ -40,7 +40,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnLogin:
-                navController.navigate(R.id.action_mainFragment_to_ThemeFragment);
+                navController.navigate(R.id.action_mainFragment_to_loginFragment);
                 break;
             case R.id.txtRegister:
                 navController.navigate(R.id.action_mainFragment_to_registerFragment);

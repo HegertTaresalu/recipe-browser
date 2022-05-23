@@ -29,20 +29,17 @@ public class ThemeFragment extends Fragment implements RadioGroup.OnCheckedChang
     MainActivity mainActivity;
     Integer selectedBtnId;
     Button selectedBtn;
-
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainActivity = (MainActivity) getActivity();
-        if (savedInstanceState != null ){
-            SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            selectedBtnId = savedInstanceState.getInt("radioBtn");
-            editor.putInt("radioBtnId", selectedBtnId);
-            editor.apply();
+            sharedPref = getActivity().getSharedPreferences("pref",0);
+            editor = sharedPref.edit();
             Log.i("oncreate", String.valueOf(selectedBtnId));
-        }
+
 
 
     }
@@ -59,15 +56,23 @@ public class ThemeFragment extends Fragment implements RadioGroup.OnCheckedChang
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        themes = view.findViewById(R.id.radioGroup);
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        int checkedSP = sharedPref.getInt("checkedSP",3);
 
+        RadioButton darkTheme = view.findViewById(R.id.darkModeBtn);
+        RadioButton lightTheme = view.findViewById(R.id.lightModeBtn);
+        RadioButton systemDefault= view.findViewById(R.id.systemDefaultBtn);
 
-
-        if (sharedPref.getInt("radioBtnId",0) != 0){
-            themes.check(sharedPref.getInt("radioBtn",0));
-
+        if (checkedSP == 0 ){
+            darkTheme.setChecked(true);
         }
+        else if(checkedSP == 1){
+            lightTheme.setChecked(true);
+        }
+        else if (checkedSP == 2){
+            systemDefault.setChecked(true);
+        }
+
+        themes = view.findViewById(R.id.radioGroup);
         themes.setOnCheckedChangeListener(this);
         super.onViewCreated(view, savedInstanceState);
 
@@ -75,18 +80,13 @@ public class ThemeFragment extends Fragment implements RadioGroup.OnCheckedChang
     }
 
     @Override
-    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-        themes.getCheckedRadioButtonId();
+    public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
         Log.i("gaming", String.valueOf(themes.getCheckedRadioButtonId()));
-        ((MainActivity) ThemeFragment.this.getActivity()).switchTheme(getView());
+        ((MainActivity) ThemeFragment.this.getActivity()).switchTheme(getView(),editor);
 
     }
 
 
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-         savedInstanceState.putInt("radioBtn",themes.getCheckedRadioButtonId());
-        super.onSaveInstanceState(savedInstanceState);
-    }
 
 
 }
