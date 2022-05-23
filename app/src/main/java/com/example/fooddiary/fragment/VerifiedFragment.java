@@ -30,15 +30,10 @@ public class VerifiedFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        view.findViewById(R.id.btnCalendar).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btnCalendar:
-                navController.navigate(R.id.action_verifiedFragment_to_calendarFragment);
-                break;
+
         }
     }
-}

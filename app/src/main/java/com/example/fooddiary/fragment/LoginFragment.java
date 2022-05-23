@@ -16,8 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.fooddiary.MainActivity;
-import com.example.fooddiary.fragment.NavbarActivity;
+import com.example.fooddiary.NavbarActivity;
 import com.example.fooddiary.R;
 import com.example.fooddiary.ViewModel.LoginViewModel;
 import com.example.fooddiary.ViewModel.UserViewModel;
@@ -74,9 +73,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         switch (view.getId()){
             case R.id.btnSignIn:
-                //String email = Objects.requireNonNull(emailInput.getEditText()).getText().toString();
-                //String password = Objects.requireNonNull(passwordInput.getEditText()).getText().toString();
-                //loginViewModel.Login(email,password);
+                String email = Objects.requireNonNull(emailInput.getEditText()).getText().toString();
+                String password = Objects.requireNonNull(passwordInput.getEditText()).getText().toString();
+                loginViewModel.Login(email,password);
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), NavbarActivity.class);
                 getActivity().startActivity(intent);

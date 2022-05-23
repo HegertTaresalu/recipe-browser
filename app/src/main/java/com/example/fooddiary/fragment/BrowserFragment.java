@@ -27,7 +27,7 @@ public class BrowserFragment extends Fragment {
         binding = FragmentBrowserBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
+        final TextView textView = binding.textBrowser;
         browserViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }

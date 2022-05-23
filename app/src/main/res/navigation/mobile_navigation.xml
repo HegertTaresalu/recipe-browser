@@ -2,16 +2,15 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navbar_graph"
-    app:startDestination="@id/verifiedFragment">
-
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_profile">
     <fragment
-        android:id="@+id/bookmarkFragment"
+        android:id="@+id/nav_bookmark"
         android:name="com.example.fooddiary.fragment.BookmarkFragment"
         android:label="fragment_bookmark"
         tools:layout="@layout/fragment_bookmark" />
     <fragment
-        android:id="@+id/browserFragment"
+        android:id="@+id/nav_browser"
         android:name="com.example.fooddiary.fragment.BrowserFragment"
         android:label="fragment_browser"
         tools:layout="@layout/fragment_browser" />
@@ -21,12 +20,8 @@
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
     <fragment
-        android:id="@+id/verifiedFragment"
+        android:id="@+id/nav_profile"
         android:name="com.example.fooddiary.fragment.VerifiedFragment"
         android:label="fragment_verified"
-        tools:layout="@layout/fragment_verified" >
-        <action
-            android:id="@+id/action_verifiedFragment_to_calendarFragment"
-            app:destination="@id/calendarFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_verified" />
 </navigation>
