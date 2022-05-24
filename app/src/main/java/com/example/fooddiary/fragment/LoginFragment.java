@@ -53,8 +53,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.getUserMutableLiveData().observe(this, firebaseUser -> {
             if (firebaseUser != null){
-                Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_verifiedFragment);
-                Toast.makeText(getContext(),"User logged in", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), NavbarActivity.class);
+                getActivity().startActivity(intent);
+
             }
         });
 

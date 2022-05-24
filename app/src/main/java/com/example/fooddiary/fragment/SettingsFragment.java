@@ -28,8 +28,6 @@ MainActivity mainActivity;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainActivity = (MainActivity) getActivity();
-
     }
 
     @Override
@@ -44,26 +42,8 @@ MainActivity mainActivity;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        themeSwitch = view.findViewById(R.id.themeSwitch);
-     SharedPreferences sharedPrefs = mainActivity.getSharedPreferences("com.example.xyle", MODE_PRIVATE);
-      themeSwitch.setChecked(sharedPrefs.getBoolean("NameOfThingToSave", true));
-        themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-                //SharedPreferences.Editor editor =mainActivity.getSharedPreferences("com.example.xyz", MODE_PRIVATE).edit();
-                //editor.putBoolean("NameOfThingToSave", isChecked);
-                //editor.commit();
-                //((MainActivity) SettingsFragment.this.getActivity()).switchTheme();
-            }
-        });
 
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean("switch",isChecked);
-        super.onSaveInstanceState(outState);
-    }
 
 }

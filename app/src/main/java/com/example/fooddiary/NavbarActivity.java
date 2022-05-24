@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -29,7 +30,7 @@ public class NavbarActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_profile, R.id.nav_browser, R.id.nav_bookmark)
+                R.id.nav_profile, R.id.nav_browser, R.id.nav_bookmark, R.id.nav_settings)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navbar);
