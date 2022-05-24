@@ -18,9 +18,7 @@ public class ValidInputControl {
 
     }
 
-
-
-    public static boolean isValidPassword(String password){
+    public static boolean  isValidPassword(String password){
         Pattern pattern;
         Matcher matcher;
 
@@ -28,10 +26,10 @@ public class ValidInputControl {
         final String PASSWORD_PATTERN =
                 "^" +
                         "(?=.*[0-9])" +         //at least 1 digit
-                        "(?=.*[a-z])" +         //at least 1 lower case letter
-                        "(?=.*[A-Z])" +         //at least 1 upper case letter
-                        "(?=\\S+$)" +           //no white spaces
-                        ".{8,20}" +               //at least 4 characters to 20
+                        "(?=.*[a-z])" +         //at least 1 lowercase letter
+                        "(?=.*[A-Z])" +         //at least 1 uppercase letter
+                        "(?=\\S+$)" +           //no whitespaces
+                        ".{8,20}" +               //at least 8 to 20 characters
                         "$";
         pattern =  Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(password);

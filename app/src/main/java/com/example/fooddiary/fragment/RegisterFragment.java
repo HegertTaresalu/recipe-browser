@@ -73,7 +73,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         surNameTextInput = view.findViewById(R.id.etSurname);
         emailTextInput= view.findViewById(R.id.etRegisterEmail);
         usernameTextInput = view.findViewById(R.id.etUsername);
-        passwordTextInput = view.findViewById(R.id.etPassword);
+        passwordTextInput = view.findViewById(R.id.etRegisterPassword);
         passwordVerifyTextInput = view.findViewById(R.id.etVerifyPass);
         view.findViewById(R.id.btnCompleteRegister).setOnClickListener(this);
 

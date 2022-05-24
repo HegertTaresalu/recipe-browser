@@ -6,18 +6,17 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="login">Login</string>
-    <string name="welcome">Welcome!</string>
     <string name="no_account">Don\'t have an account? Sign up here!</string>
     <string name="verify_pass">Verify password</string>
     <string name="send_recovery">Send recovery email</string>
     <string name="recovery_text">Enter your email down below so that we can send you a recovery email!</string>
     <string name="log_out">Log out</string>
     <string name="error">Error%1$s</string>
-
 
     <!-- Strings related to calendar-->
     <string name="p_note_helper">Write a personal note alongside the dish\'s recipe!</string>
