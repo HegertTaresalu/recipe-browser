@@ -2,6 +2,7 @@ package com.example.fooddiary;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -31,9 +32,7 @@ public class AuthRepository {
     private final MutableLiveData<ArrayList<User>> userLiveData;
 
 
-
-
-    public AuthRepository(Application application){
+    public AuthRepository(Application application) {
         this.application = application;
         userMutableLiveData = new MutableLiveData<>();
         loggedOutMutableLiveData = new MutableLiveData<>();
@@ -41,7 +40,7 @@ public class AuthRepository {
         userLiveData = new MutableLiveData<>();
 
 
-        if (firebaseAuth.getCurrentUser()!= null){
+        if (firebaseAuth.getCurrentUser() != null) {
             userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
             loggedOutMutableLiveData.postValue(false);
             //loadUserData();
@@ -50,82 +49,79 @@ public class AuthRepository {
     }
 
     //method for registering email
-    public void userRegistration(String firstName, String lastName, String email,String username, String password){
+    public void userRegistration(String firstName, String lastName, String email, String username, String password) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            firebaseAuth.createUserWithEmailAndPassword(email,password)
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(application.getMainExecutor(), task -> {
 
-                    if (task.isSuccessful()) {
-                        if (firebaseAuth.getCurrentUser() != null) {
-
-                            String userId = firebaseAuth.getCurrentUser().getUid();
-                            //Creates new collection named users if one doesn't exist into it add a new document UID reference
-                            DocumentReference documentReference = db.collection("users").document(userId);
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("firstName", firstName);
-                            user.put("surname", lastName);
-                            user.put("email", email);
-                            user.put("username",username);
-                            documentReference.set(user).addOnSuccessListener(aVoid -> Log.i(TAG, "onSuccess:user data was saved"))
-                                    .addOnFailureListener(e -> Log.e(TAG, "onFailure: error writing to db"));
-                            userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
-                        }
-                    }
-                    else{
-                        Toast.makeText(application, application.getString(R.string.error, task.getException().getMessage()),Toast.LENGTH_SHORT).show();
-                    }
-
-                });
-
-    }
-
-
-    public void logOut(){
-        firebaseAuth.signOut();
-        loggedOutMutableLiveData.postValue(true);
-
-    }
-
-    public void logIn(String email, String password){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            firebaseAuth.signInWithEmailAndPassword(email,password)
-                    .addOnCompleteListener(application.getMainExecutor(), task -> {
                         if (task.isSuccessful()) {
-                            userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
+                            if (firebaseAuth.getCurrentUser() != null) {
+
+                                String userId = firebaseAuth.getCurrentUser().getUid();
+                                //Creates new collection named users if one doesn't exist into it add a new document UID reference
+                                DocumentReference documentReference = db.collection("users").document(userId);
+                                Map<String, Object> user = new HashMap<>();
+                                user.put("firstName", firstName);
+                                user.put("surname", lastName);
+                                user.put("email", email);
+                                user.put("username", username);
+                                documentReference.set(user).addOnSuccessListener(aVoid -> Log.i(TAG, "onSuccess:user data was saved"))
+                                        .addOnFailureListener(e -> Log.e(TAG, "onFailure: error writing to db"));
+                                userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
+                            }
+                        } else {
+                            Toast.makeText(application, application.getString(R.string.error, task.getException().getMessage()), Toast.LENGTH_SHORT).show();
                         }
-                        else{
-                           // Toast.makeText(application, application.getString(R.string.error, task.getException().getMessage()), Toast.LENGTH_SHORT).show();
+
+                    });
+            }
+        }
+
+
+        public void logOut(){
+            firebaseAuth.signOut();
+            loggedOutMutableLiveData.postValue(true);
+
+        }
+
+        public void logIn (String email, String password){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                firebaseAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(application.getMainExecutor(), task -> {
+                            if (task.isSuccessful()) {
+                                userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
+                            } else {
+                                // Toast.makeText(application, application.getString(R.string.error, task.getException().getMessage()), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        }
+
+
+        public void resetPassword (String email){
+            firebaseAuth.sendPasswordResetEmail(email)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "Email sent.");
+                            }
                         }
                     });
         }
 
-    }
 
+        public MutableLiveData<FirebaseUser> getUserMutableLiveData () {
+            return userMutableLiveData;
+        }
 
-    public void resetPassword(String email) {
-        firebaseAuth.sendPasswordResetEmail(email)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "Email sent.");
-                        }
-                    }
-                });
-    }
+        public MutableLiveData<Boolean> getLoggedOutMutableLiveData () {
+            return loggedOutMutableLiveData;
+        }
 
-
-    public MutableLiveData<FirebaseUser> getUserMutableLiveData() {
-        return userMutableLiveData;
-    }
-
-    public MutableLiveData<Boolean> getLoggedOutMutableLiveData() {
-        return loggedOutMutableLiveData;
-    }
-
-    public MutableLiveData<ArrayList<User>> getUserLiveData() {
-        return userLiveData;
-    }
+        public MutableLiveData<ArrayList<User>> getUserLiveData () {
+            return userLiveData;
+        }
 }
 
 

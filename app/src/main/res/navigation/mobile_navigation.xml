@@ -23,5 +23,9 @@
         android:id="@+id/nav_profile"
         android:name="com.example.fooddiary.fragment.VerifiedFragment"
         android:label="fragment_verified"
-        tools:layout="@layout/fragment_verified" />
+        tools:layout="@layout/fragment_verified" >
+        <action
+            android:id="@+id/action_nav_profile_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+    </fragment>
 </navigation>
