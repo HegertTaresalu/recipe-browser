@@ -16,6 +16,12 @@
         <action
             android:id="@+id/action_mainFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_ThemeFragment"
+            app:destination="@id/ThemeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -44,4 +50,30 @@
             android:id="@+id/action_recoveryFragment_to_loginFragment2"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/verifiedFragment"
+        android:name="com.example.fooddiary.fragment.VerifiedFragment"
+        android:label="fragment_verified"
+        tools:layout="@layout/fragment_verified" >
+        <action
+            android:id="@+id/action_verifiedFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_verifiedFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.fooddiary.fragment.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.fooddiary.fragment.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/ThemeFragment"
+        android:name="com.example.fooddiary.fragment.ThemeFragment"
+        android:label="ThemeFragment" />
 </navigation>
