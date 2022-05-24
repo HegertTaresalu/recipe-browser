@@ -56,9 +56,6 @@ public class VerifiedFragment extends Fragment implements View.OnClickListener {
             case  R.id.log_out:
                 loginViewModel.logout();
                 navController.navigate(R.id.action_verifiedFragment_to_mainFragment);
-
-
-
         }
     }
 }
