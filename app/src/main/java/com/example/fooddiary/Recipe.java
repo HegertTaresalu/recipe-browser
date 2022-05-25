@@ -1,12 +1,10 @@
 package com.example.fooddiary;
 
-import java.lang.reflect.Array;
-
 public class Recipe {
     private final int id;
     private final String title;
     //private final String image;
-    private final String dishTypes;
+    private final String dishType;
     private final String sourceUrl;
     private final int readyIn;
     private final Boolean dairyFree;
@@ -17,7 +15,7 @@ public class Recipe {
         this.id = id;
         this.title = title;
         //this.image = image;
-        this.dishTypes = dishType;
+        this.dishType = dishType;
         this.sourceUrl = sourceUrl;
         this.readyIn = readyIn;
         this.dairyFree = dairyFree;
@@ -32,7 +30,7 @@ public class Recipe {
 
     //public String getImage() { return image; }
 
-    public String getDishTypes() { return dishTypes; }
+    public String getDishType() { return dishType; }
 
     public String getSourceUrl() { return sourceUrl; }
 
