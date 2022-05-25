@@ -13,17 +13,18 @@ public class Recipe {
     private final Boolean vegetarian;
     private final Boolean vegan;
 
-    public Recipe(int id, String title, String image, String dishTypes, String sourceUrl, int readyIn, Boolean dairyFree, Boolean vegetarian, Boolean vegan) {
+    public Recipe(int id, String title, String dishType, String sourceUrl, int readyIn, Boolean dairyFree, Boolean vegetarian, Boolean vegan) {
         this.id = id;
         this.title = title;
         //this.image = image;
-        this.dishTypes = dishTypes;
+        this.dishTypes = dishType;
         this.sourceUrl = sourceUrl;
         this.readyIn = readyIn;
         this.dairyFree = dairyFree;
         this.vegetarian = vegetarian;
         this.vegan = vegan;
     }
+
 
     public int getId() { return id; }
 

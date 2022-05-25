@@ -41,6 +41,10 @@ public class RecipeRepository {
         Boolean dairyFree = result.get("dairyFree").getAsBoolean();
         Boolean vegetarian = result.get("vegetarian").getAsBoolean();
         Boolean vegan = result.get("vegan").getAsBoolean();
+
+        Recipe recipe = new Recipe(id, title, dishType, sourceUrl, readyIn, dairyFree, vegetarian, vegan);
+        arrayList.add(recipe);
+        recipeLivedata.setValue(arrayList);
     }
 }
 

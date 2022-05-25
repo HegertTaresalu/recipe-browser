@@ -56,10 +56,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), NavbarActivity.class);
                 getActivity().startActivity(intent);
-
             }
         });
-
     }
 
     @Override
