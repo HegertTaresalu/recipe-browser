@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layoutDirection="rtl"
-            android:text="Dark Mode"
+            android:text="@string/dark_mode"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textAlignment="textStart"
@@ -35,7 +35,7 @@
             android:layoutDirection="rtl"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="Light Mode"
+            android:text="@string/light_mode"
             android:textAlignment="textStart" />
 
         <RadioButton
@@ -46,7 +46,7 @@
             android:layoutDirection="rtl"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="System Default"
+            android:text="@string/system_default"
             android:checked="true"
             android:textAlignment="textStart" />
     </RadioGroup>

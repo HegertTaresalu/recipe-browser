@@ -39,9 +39,6 @@ public class ThemeFragment extends Fragment implements RadioGroup.OnCheckedChang
             sharedPref = getActivity().getSharedPreferences("pref",0);
             editor = sharedPref.edit();
             Log.i("oncreate", String.valueOf(selectedBtnId));
-
-
-
     }
 
 
