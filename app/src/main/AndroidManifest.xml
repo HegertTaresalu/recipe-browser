@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDiary.NoActionBar">
         <activity
-            android:name=".NavbarActivity"
+            android:name=".Activity.NavbarActivity"
             android:exported="false"
             android:label="@string/title_activity_navbar"
             android:theme="@style/Theme.FoodDiary.NoActionBar.NoActionBar" />
         <!-- android:theme="@style/Theme.FoodDiary" -->
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

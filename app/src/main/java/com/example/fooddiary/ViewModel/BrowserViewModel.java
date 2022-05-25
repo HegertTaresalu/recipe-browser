@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.fooddiary.Recipe;
-import com.example.fooddiary.RecipeRepository;
+import com.example.fooddiary.models.Recipe;
+import com.example.fooddiary.repository.RecipeRepository;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class BrowserViewModel extends AndroidViewModel{
        recipeLiveData = repository.getRecipeLiveData();
     }
 
-    public void getRecipeData(){repository.getRecipeInfo(15233);}
+    public void getRecipeData(){repository.getRecipeInfo();}
 
     public MutableLiveData<ArrayList<Recipe>> getRecipeLiveData(){
         return recipeLiveData;

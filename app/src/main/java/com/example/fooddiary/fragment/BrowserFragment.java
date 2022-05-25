@@ -23,21 +23,22 @@ public class BrowserFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        browserViewModel = new ViewModelProvider(this).get(BrowserViewModel.class);
-        browserViewModel.getRecipeData();
-        browserViewModel.getRecipeLiveData()
-                .observe(this,recipes -> recipeAdapter.setRecipeList(recipes));
-
-
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_browser,container,false);
+        browserViewModel = new ViewModelProvider(this).get(BrowserViewModel.class);
+        browserViewModel.getRecipeData();
+        browserViewModel.getRecipeLiveData()
+                .observe(getViewLifecycleOwner(),recipes ->
+                        recipeAdapter.setRecipeList(recipes)
+                );
+
 
         RecyclerView recyclerView = view.findViewById(R.id.recipeRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
         recipeAdapter = new RecipeAdapter();
         recyclerView.setAdapter(recipeAdapter);
         return view;

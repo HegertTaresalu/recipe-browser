@@ -1,7 +1,8 @@
-package com.example.fooddiary;
+package com.example.fooddiary.Activity;
 
 import android.os.Bundle;
 
+import com.example.fooddiary.R;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.widget.Toolbar;

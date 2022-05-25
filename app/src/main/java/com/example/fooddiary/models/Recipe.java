@@ -1,4 +1,4 @@
-package com.example.fooddiary;
+package com.example.fooddiary.models;
 
 public class Recipe {
     private final int id;

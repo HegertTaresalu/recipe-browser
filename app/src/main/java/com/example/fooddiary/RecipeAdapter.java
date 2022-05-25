@@ -7,7 +7,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.fooddiary.models.Recipe;
 
 import java.util.ArrayList;
 
@@ -53,6 +56,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             title = itemView.findViewById(R.id.titleTxt);
             dishType = itemView.findViewById(R.id.dishTypeTxt);
             prepTime = itemView.findViewById(R.id.preptimeTxt);
+
 
 
         }
