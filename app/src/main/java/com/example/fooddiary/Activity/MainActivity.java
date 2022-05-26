@@ -11,6 +11,9 @@ import android.widget.RadioButton;
 
 import com.example.fooddiary.R;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class MainActivity extends AppCompatActivity {
     int NightMode;
     SharedPreferences sharedPreferences;
@@ -19,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         sharedPreferences = getSharedPreferences("SharedPrefs", MODE_PRIVATE);
         NightMode = sharedPreferences.getInt("NightModeInt", 1);
         AppCompatDelegate.setDefaultNightMode(NightMode);

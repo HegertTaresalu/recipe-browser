@@ -1,6 +1,7 @@
 package com.example.fooddiary.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,10 +30,19 @@ public class BrowserFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_browser,container,false);
         browserViewModel = new ViewModelProvider(this).get(BrowserViewModel.class);
+
         browserViewModel.getRecipeData();
+                /*
+        Runnable runnable = () -> ;
+
+        Thread bgThread = new Thread(runnable);
+        bgThread.start();
+
+*/
         browserViewModel.getRecipeLiveData()
                 .observe(getViewLifecycleOwner(),recipes ->
-                        recipeAdapter.setRecipeList(recipes)
+                                 recipeAdapter.setRecipeList(recipes)
+
                 );
 
 
@@ -41,14 +51,16 @@ public class BrowserFragment extends Fragment {
         recyclerView.setHasFixedSize(false);
         recipeAdapter = new RecipeAdapter();
         recyclerView.setAdapter(recipeAdapter);
+/*
+        Runnable runnable1 = () -> {
+
+        };
+
+        Thread bgThread1 = new Thread(runnable1);
+        bgThread1.start();
+        */
+
         return view;
 
-
-
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
     }
 }
