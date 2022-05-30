@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         editor_theme.putInt("NightModeInt", NightMode);
         editor_theme.apply();
     }
+
     public void switchTheme(View view, SharedPreferences.Editor editor ){
 
 

@@ -31,14 +31,14 @@ public class BrowserFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_browser,container,false);
         browserViewModel = new ViewModelProvider(this).get(BrowserViewModel.class);
 
-        browserViewModel.getRecipeData();
-                /*
-        Runnable runnable = () -> ;
+
+
+        Runnable runnable = () ->  browserViewModel.getRecipeData();;
 
         Thread bgThread = new Thread(runnable);
         bgThread.start();
 
-*/
+
         browserViewModel.getRecipeLiveData()
                 .observe(getViewLifecycleOwner(),recipes ->
                                  recipeAdapter.setRecipeList(recipes)
@@ -46,19 +46,14 @@ public class BrowserFragment extends Fragment {
                 );
 
 
+
         RecyclerView recyclerView = view.findViewById(R.id.recipeRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setHasFixedSize(false);
         recipeAdapter = new RecipeAdapter();
         recyclerView.setAdapter(recipeAdapter);
-/*
-        Runnable runnable1 = () -> {
 
-        };
 
-        Thread bgThread1 = new Thread(runnable1);
-        bgThread1.start();
-        */
 
         return view;
 

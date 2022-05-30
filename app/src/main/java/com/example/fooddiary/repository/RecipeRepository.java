@@ -44,6 +44,7 @@ public class RecipeRepository {
 
         for (int i = 0; i < recipes.size() ; i++) {
             String type;
+            String image;
             Log.i("recipes", String.valueOf(recipes.size()));
             Log.i("recipes", String.valueOf(i));
 
@@ -56,20 +57,25 @@ public class RecipeRepository {
 
                 int id = recipe.get("id").getAsInt();
                 String title = recipe.get("title").getAsString();
-                //String dishType = dishTypes.get("dishTypes").getAsString();
                 String sourceUrl = recipe.get("sourceUrl").getAsString();
+                image = null;
+                if (recipe.has("image")){
+                     image = recipe.get("image").getAsString();
+                }
                 int readyIn = recipe.get("readyInMinutes").getAsInt();
                  type = application.getString(R.string.dishtype);
-            if (recipe.has("dishTypes")){
+                if (recipe.has("dishTypes")){
                     JsonArray dishTypes =  recipe.getAsJsonArray("dishTypes");
-                     type = dishTypes.get(0).getAsString();
+                    if (dishTypes.size() != 0){
+                        type = dishTypes.get(0).getAsString();
+                    }
                 }
 
                 Boolean dairyFree = recipe.get("dairyFree").getAsBoolean();
                 Boolean vegetarian = recipe.get("vegetarian").getAsBoolean();
                 Boolean vegan = recipe.get("vegan").getAsBoolean();
 
-                Recipe final_recipe = new Recipe(id, title, type, sourceUrl, readyIn, dairyFree, vegetarian, vegan);
+                Recipe final_recipe = new Recipe(id, title, type, sourceUrl, readyIn, dairyFree, vegetarian, vegan,image);
                 arrayList.add(final_recipe);
                 Log.i("gaming", String.valueOf(final_recipe.getDishType()));
                 recipeLiveData.setValue(arrayList);

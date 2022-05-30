@@ -69,7 +69,6 @@ public class ThemeFragment extends Fragment implements RadioGroup.OnCheckedChang
 
         themes = view.findViewById(R.id.radioGroup);
         themes.setOnCheckedChangeListener(this);
-        super.onViewCreated(view, savedInstanceState);
 
 
     }
