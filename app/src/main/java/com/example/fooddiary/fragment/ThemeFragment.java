@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,13 +22,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.fooddiary.MainActivity;
+import com.example.fooddiary.NavbarActivity;
 import com.example.fooddiary.R;
 import com.google.android.material.snackbar.Snackbar;
 
 public class ThemeFragment extends Fragment implements RadioGroup.OnCheckedChangeListener {
 
+    NavController navController;
     RadioGroup themes;
-    MainActivity mainActivity;
+    NavbarActivity navbarActivity;
     Integer selectedBtnId;
     Button selectedBtn;
     SharedPreferences sharedPref;
@@ -35,24 +39,21 @@ public class ThemeFragment extends Fragment implements RadioGroup.OnCheckedChang
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainActivity = (MainActivity) getActivity();
+        navbarActivity = (NavbarActivity) getActivity();
             sharedPref = getActivity().getSharedPreferences("pref",0);
             editor = sharedPref.edit();
             Log.i("oncreate", String.valueOf(selectedBtnId));
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         return inflater.inflate(R.layout.fragment_theme, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        navController = Navigation.findNavController(view);
         int checkedSP = sharedPref.getInt("checkedSP",3);
 
         RadioButton darkTheme = view.findViewById(R.id.darkModeBtn);
@@ -72,18 +73,11 @@ public class ThemeFragment extends Fragment implements RadioGroup.OnCheckedChang
         themes = view.findViewById(R.id.radioGroup);
         themes.setOnCheckedChangeListener(this);
         super.onViewCreated(view, savedInstanceState);
-
-
     }
 
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
         Log.i("gaming", String.valueOf(themes.getCheckedRadioButtonId()));
-        ((MainActivity) ThemeFragment.this.getActivity()).switchTheme(getView(),editor);
-
+        ((NavbarActivity) ThemeFragment.this.getActivity()).switchTheme(getView(),editor);
     }
-
-
-
-
 }
