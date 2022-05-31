@@ -3,10 +3,11 @@ package com.example.fooddiary;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 
-import com.example.fooddiary.utils.LanguageConfig;
+//import com.example.fooddiary.utils.LanguageConfig;
 import com.example.fooddiary.utils.SharedPrefs;
 import com.google.android.material.navigation.NavigationView;
 
@@ -25,10 +26,7 @@ import com.example.fooddiary.databinding.ActivityNavbarBinding;
 public class NavbarActivity extends AppCompatActivity {
     int NightMode;
 
-    //vvv this is a java class vvv
     SharedPrefs sharedPrefs;
-    //^^^ this is a java class ^^^
-
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor_theme;
 
@@ -109,7 +107,7 @@ public class NavbarActivity extends AppCompatActivity {
     protected void attachBaseContext(Context newBase) {
         sharedPrefs = new SharedPrefs(newBase);
         String languageCode = sharedPrefs.getLocale();
-        Context context = LanguageConfig.changeLanguage(newBase, languageCode);
+      //  Context context = LanguageConfig.changeLanguage(newBase, languageCode);
         super.attachBaseContext(newBase);
     }
 
@@ -119,17 +117,18 @@ public class NavbarActivity extends AppCompatActivity {
         RadioButton estonian = view.findViewById(R.id.btnEst);
         RadioButton welsh = view.findViewById(R.id.btnCym);
         if (english.isChecked()) {
-            editor.putInt("checkedLang", 0);
+            editor.putInt("languageSP", 0);
             editor.commit();
             sharedPrefs.setLocale("en");
         } else if (estonian.isChecked()) {
-            editor.putInt("checkedLang", 1);
+            editor.putInt("languageSP", 1);
             editor.commit();
             sharedPrefs.setLocale("et");
         } else if (welsh.isChecked()) {
-            editor.putInt("checkedLang", 2);
+            editor.putInt("languageSP", 2);
             editor.commit();
             sharedPrefs.setLocale("cy");
         }
+
     }
 }

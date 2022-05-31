@@ -51,51 +51,34 @@ public class LanguageFragment extends Fragment implements RadioGroup.OnCheckedCh
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         navController = Navigation.findNavController(view);
 
+        int languageSP = sharedPref.getInt("languageSP",3);
+        RadioButton english = view.findViewById(R.id.btnEng);
+        RadioButton estonian = view.findViewById(R.id.btnEst);
+        RadioButton welsh = view.findViewById(R.id.btnCym);
+
+        if(languageSP == 0) {
+            locale = new Locale("en");
+            english.setChecked(true);
+        } else if (languageSP == 1) {
+            estonian.setChecked(true);
+        } else if (languageSP == 2) {
+            welsh.setChecked(true);
+
+        }
+
         languages = view.findViewById(R.id.rgLanguages);
-
         languages.setOnCheckedChangeListener(this);
-
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-        View view = getView();
-        int checkedSP = sharedPref.getInt("checkedSP",3);
-        RadioButton english = view.findViewById(R.id.btnEng);
-        RadioButton estonian = view.findViewById(R.id.btnEst);
-        RadioButton welsh = view.findViewById(R.id.btnCym);
-
-        switch (checkedId) {
-            case R.id.btnEng:
-                locale = new Locale("en");
-                changeChecked(english);
-                break;
-            case  R.id.btnEst:
-                locale = new Locale("et");
-                changeChecked(estonian);
-                break;
-            case  R.id.btnCym:
-                locale = new Locale("cy");
-                changeChecked(welsh);
-                break;
-            default:
-                locale = new Locale("en");
-                break;
-        }
 
         ((NavbarActivity) LanguageFragment.this.getActivity()).switchLang(getView(),editor);
 
     }
 
-    public void changeChecked(RadioButton rb) {
-        rb.setChecked(true);
-        Locale.setDefault(locale);
-        Configuration configuration = new Configuration();
-        configuration.locale = locale;
-        navbarActivity.getBaseContext().getResources().updateConfiguration(configuration,
-                navbarActivity.getBaseContext().getResources().getDisplayMetrics());
-
+    public void restartActivity() {
         Intent i = new Intent();
         i.setClass(getActivity(), NavbarActivity.class);
         startActivity(i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |

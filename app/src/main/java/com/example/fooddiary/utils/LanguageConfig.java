@@ -7,7 +7,7 @@ import android.content.res.Resources;
 import android.os.Build;
 
 import java.util.Locale;
-
+/*
 public class LanguageConfig {
     public static ContextWrapper changeLanguage(Context context, String languageCode){
         Resources resources = context.getResources();
@@ -34,4 +34,8 @@ public class LanguageConfig {
         }
         return new ContextWrapper(context);
     }
+
+
 }
+
+ */

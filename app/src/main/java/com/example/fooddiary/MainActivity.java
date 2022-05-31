@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 
-import com.example.fooddiary.utils.LanguageConfig;
+//import com.example.fooddiary.utils.LanguageConfig;
 import com.example.fooddiary.utils.SharedPrefs;
 
 public class MainActivity extends AppCompatActivity {
