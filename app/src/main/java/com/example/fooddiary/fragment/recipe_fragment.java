@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,19 +18,6 @@ import com.example.fooddiary.R;
 import com.squareup.picasso.Picasso;
 
 public class recipe_fragment extends Fragment {
-/*
-
-  private final String title;
-    private final String image;
-    private final String dishType;
-    private final String sourceUrl;
-    private final int readyIn;
-    private final Boolean dairyFree;
-    private final Boolean vegetarian;
-    private final Boolean vegan;
-
- */
-
 
     TextView title;
     ImageView image;
@@ -40,6 +28,7 @@ public class recipe_fragment extends Fragment {
     TextView isVegetarian;
     TextView isVegan;
     Bundle args;
+    Button button;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,16 +37,7 @@ public class recipe_fragment extends Fragment {
     }
 
 
-    /*
-     args = new Bundle();
-            args.putString("recipe_title",recipe.getTitle());
-            args.putString("recipe_type", recipe.getDishType());
-            args.putString("recipe_image", recipe.getImage());
-            args.putString("recipe_src_url", recipe.getSourceUrl());
-            args.putBoolean("isDairy",recipe.getDairyFree());
-            args.putBoolean("isVegan",recipe.getVegan());
-            args.putBoolean("isVegetarian",recipe.getVegetarian());
-     */
+
 
 
     @Override
@@ -65,6 +45,7 @@ public class recipe_fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_recipe, container, false);
+        button = view.findViewById(R.id.calendarBtn);
         dishType = view.findViewById(R.id.recipeDishTypeTxt);
         title = view.findViewById(R.id.recipeTitleTxt);
         image = view.findViewById(R.id.recipeImg);
@@ -78,7 +59,12 @@ public class recipe_fragment extends Fragment {
         args = getArguments();
         dishType.setText(args.getString("recipe_type"));
         title.setText(args.getString("recipe_title"));
-        sourceUrl.setText(args.getString(""));
+        sourceUrl.setText(args.getString("recipe_src_url"));
+        prepTime.setText(String.valueOf(args.getInt("prep_time")));
+        isDairyFree.setText(String.valueOf(args.getBoolean("isDairy")));
+        isVegetarian.setText(String.valueOf(args.getBoolean("isVegetarian")));
+        isVegan.setText(String.valueOf(args.getBoolean("isVegan")));
+
         //TODO show image
        // Picasso.get().load(args.getString("recipe_src_url")).into(image);
 
@@ -89,5 +75,7 @@ public class recipe_fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
     }
 }
