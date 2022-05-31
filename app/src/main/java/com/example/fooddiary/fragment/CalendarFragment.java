@@ -24,7 +24,14 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
     EditText link;
     EditText personal;
     Button addRecipe;
-    
+    Bundle args;
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        args = getArguments();
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +45,19 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
         title = view.findViewById(R.id.etTitle);
         link = view.findViewById(R.id.etLink);
         personal = view.findViewById(R.id.etPersonal);
+        /*
+
+         dishType.setText(args.getString("recipe_type"));
+        title.setText(args.getString("recipe_title"));
+        sourceUrl.setText(args.getString("recipe_src_url"));
+        prepTime.setText(String.valueOf(args.getInt("prep_time")));
+        isDairyFree.setText(String.valueOf(args.getBoolean("isDairy")));
+        isVegetarian.setText(String.valueOf(args.getBoolean("isVegetarian")));
+        isVegan.setText(String.valueOf(args.getBoolean("isVegan")));
+         */
+
+        title.setText(args.getString("recipe_title"));
+        link.setText(args.getString("recipe_src_url"));
         view.findViewById(R.id.btnAddRecipe).setOnClickListener(this);
 
     }

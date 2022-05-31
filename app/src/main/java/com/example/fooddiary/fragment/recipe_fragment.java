@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.widget.TextViewKt;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +31,8 @@ public class recipe_fragment extends Fragment {
     TextView isVegan;
     Bundle args;
     Button button;
+    NavController navController;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +59,6 @@ public class recipe_fragment extends Fragment {
         isVegetarian = view.findViewById(R.id.isVegetarian);
         isVegan = view.findViewById(R.id.isVeganTxt);
 
-
         args = getArguments();
         dishType.setText(args.getString("recipe_type"));
         title.setText(args.getString("recipe_title"));
@@ -75,7 +78,12 @@ public class recipe_fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
 
+        button.setOnClickListener(view1 -> {
+            navController.navigate(R.id.action_recipe_fragment_to_calendarFragment,args);
+
+        });
 
     }
 }

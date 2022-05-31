@@ -33,7 +33,7 @@ public class BrowserFragment extends Fragment {
 
 
 
-        Runnable runnable = () ->  browserViewModel.getRecipeData();;
+        Runnable runnable = () ->  browserViewModel.getRecipeData();
 
         Thread bgThread = new Thread(runnable);
         bgThread.start();

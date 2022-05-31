@@ -41,5 +41,9 @@
         android:id="@+id/recipe_fragment"
         android:name="com.example.fooddiary.fragment.recipe_fragment"
         android:label="fragment_recipe"
-        tools:layout="@layout/fragment_recipe" />
+        tools:layout="@layout/fragment_recipe" >
+        <action
+            android:id="@+id/action_recipe_fragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+    </fragment>
 </navigation>
