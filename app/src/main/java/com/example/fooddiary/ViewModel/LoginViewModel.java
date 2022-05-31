@@ -12,12 +12,16 @@ public class LoginViewModel extends AndroidViewModel {
 
     private final AuthRepository authRepository;
     private final MutableLiveData userMutableData;
+    public final MutableLiveData<Boolean> loggedOutMutableLiveData;
 
-
+    public MutableLiveData<Boolean> getLoggedOutMutableLiveData() {
+        return loggedOutMutableLiveData;
+    }
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
         authRepository = new AuthRepository(application);
+        loggedOutMutableLiveData = authRepository.getLoggedOutMutableLiveData();
         userMutableData = authRepository.getUserMutableLiveData();
 
 

@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fooddiary.R;
-import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
 public class recipe_fragment extends Fragment {
 

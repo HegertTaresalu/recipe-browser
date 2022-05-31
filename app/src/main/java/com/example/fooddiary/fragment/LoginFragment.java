@@ -1,5 +1,8 @@
 package com.example.fooddiary.fragment;
 
+import static com.example.fooddiary.ValidInputControl.isValidEmail;
+import static com.example.fooddiary.ValidInputControl.isValidPassword;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,11 +53,15 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        userViewModel.getUserMutableLiveData().observe(this, firebaseUser -> {
-            if (firebaseUser != null){
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), NavbarActivity.class);
-                getActivity().startActivity(intent);
+        loginViewModel.getUserMutableLiveData().observe(this, firebaseUser -> {
+            if (firebaseUser != null)
+            {
+                if (getView() != null){
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), NavbarActivity.class);
+                    getActivity().startActivity(intent);
+                }
+
             }
         });
     }
@@ -76,12 +83,16 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             case R.id.btnSignIn:
                 String email = Objects.requireNonNull(emailInput.getEditText()).getText().toString();
                 String password = Objects.requireNonNull(passwordInput.getEditText()).getText().toString();
-                Snackbar.make(view,password,Snackbar.LENGTH_SHORT).show();
 
-                loginViewModel.Login(email,password);
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), NavbarActivity.class);
-                getActivity().startActivity(intent);
+                    if (isValidPassword(password) && isValidEmail(email)){
+                        loginViewModel.Login(email,password);
+
+                    }
+
+
+
+
+
                 break;
             case R.id.txtForgotPass:
                 navController.navigate(R.id.action_loginFragment_to_recoveryFragment2);

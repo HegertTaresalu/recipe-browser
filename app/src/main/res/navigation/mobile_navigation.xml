@@ -46,4 +46,13 @@
             android:id="@+id/action_recipe_fragment_to_calendarFragment"
             app:destination="@id/calendarFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.example.fooddiary.fragment.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment2_to_nav_profile"
+            app:destination="@id/nav_profile" />
+    </fragment>
 </navigation>
