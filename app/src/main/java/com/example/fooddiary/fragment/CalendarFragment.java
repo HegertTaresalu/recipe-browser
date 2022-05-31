@@ -18,12 +18,10 @@ import android.widget.Toast;
 
 import com.example.fooddiary.R;
 
-import java.util.Calendar;
-
 public class CalendarFragment extends Fragment implements View.OnClickListener {
 
     EditText title;
-    EditText description;
+    EditText link;
     EditText personal;
     Button addRecipe;
     
@@ -38,7 +36,7 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         title = view.findViewById(R.id.etTitle);
-        description = view.findViewById(R.id.etDescription);
+        link = view.findViewById(R.id.etLink);
         personal = view.findViewById(R.id.etPersonal);
         view.findViewById(R.id.btnAddRecipe).setOnClickListener(this);
 
@@ -49,7 +47,7 @@ public class CalendarFragment extends Fragment implements View.OnClickListener {
         Intent intent = new Intent(Intent.ACTION_INSERT);
         intent.setData(CalendarContract.Events.CONTENT_URI);
         intent.putExtra(CalendarContract.Events.TITLE, title.getText().toString());
-        intent.putExtra(CalendarContract.Events.DESCRIPTION, description.getText().toString() + "\n\nPersonal notes:\n\n" + personal.getText().toString());
+        intent.putExtra(CalendarContract.Events.DESCRIPTION, link.getText().toString() + "\n\n" + personal.getText().toString());
 
         try {
             startActivity(intent);
