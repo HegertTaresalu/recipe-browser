@@ -1,5 +1,6 @@
 package com.example.fooddiary.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,8 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.fooddiary.Activity.MainActivity;
+import com.example.fooddiary.Activity.NavbarActivity;
 import com.example.fooddiary.R;
 import com.example.fooddiary.ViewModel.LoginViewModel;
+import com.example.fooddiary.ViewModel.UserViewModel;
 
 public class VerifiedFragment extends Fragment implements View.OnClickListener {
 
@@ -34,6 +38,16 @@ public class VerifiedFragment extends Fragment implements View.OnClickListener {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        loginViewModel.getLoggedOutMutableLiveData().observe(this, loggedOut ->{
+            if(loggedOut){
+                if(getView() != null) {
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), MainActivity.class);
+                    getActivity().startActivity(intent);
+                }
+
+            }
+        });
 
     }
 
@@ -55,7 +69,6 @@ public class VerifiedFragment extends Fragment implements View.OnClickListener {
                 break;
             case  R.id.log_out:
                 loginViewModel.logout();
-                navController.navigate(R.id.action_verifiedFragment_to_mainFragment);
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.fooddiary;
+package com.example.fooddiary.Activity;
 
 import android.content.Context;
 import android.content.Intent;

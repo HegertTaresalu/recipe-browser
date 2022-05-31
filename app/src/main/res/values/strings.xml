@@ -46,6 +46,10 @@
     <string name="drawer_bookmarks">Bookmarks</string>
     <string name="drawer_settings">Settings</string>
 
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="dishtype">none</string>
     <!-- Strings related to settings -->
     <string name="dark_mode">Dark mode</string>
     <string name="light_mode">Light mode</string>

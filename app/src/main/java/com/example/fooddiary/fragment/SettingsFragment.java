@@ -1,8 +1,5 @@
 package com.example.fooddiary.fragment;
 
-import static android.content.Context.MODE_PRIVATE;
-
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +15,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-import com.example.fooddiary.MainActivity;
+import com.example.fooddiary.Activity.MainActivity;
 import com.example.fooddiary.R;
 public class SettingsFragment extends Fragment implements View.OnClickListener {
     NavController navController;

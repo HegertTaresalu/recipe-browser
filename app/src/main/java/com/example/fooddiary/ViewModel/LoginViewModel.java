@@ -6,22 +6,22 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.fooddiary.AuthRepository;
-import com.example.fooddiary.User;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
+import com.example.fooddiary.repository.AuthRepository;
 
 public class LoginViewModel extends AndroidViewModel {
 
     private final AuthRepository authRepository;
     private final MutableLiveData userMutableData;
+    public final MutableLiveData<Boolean> loggedOutMutableLiveData;
 
-
+    public MutableLiveData<Boolean> getLoggedOutMutableLiveData() {
+        return loggedOutMutableLiveData;
+    }
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
         authRepository = new AuthRepository(application);
+        loggedOutMutableLiveData = authRepository.getLoggedOutMutableLiveData();
         userMutableData = authRepository.getUserMutableLiveData();
 
 

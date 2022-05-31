@@ -13,7 +13,11 @@
         android:id="@+id/nav_browser"
         android:name="com.example.fooddiary.fragment.BrowserFragment"
         android:label="fragment_browser"
-        tools:layout="@layout/fragment_browser" />
+        tools:layout="@layout/fragment_browser" >
+        <action
+            android:id="@+id/action_nav_browser_to_recipe_fragment"
+            app:destination="@id/recipe_fragment" />
+    </fragment>
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.example.fooddiary.fragment.CalendarFragment"
