@@ -60,10 +60,11 @@ public class LanguageFragment extends Fragment implements RadioGroup.OnCheckedCh
             locale = new Locale("en");
             english.setChecked(true);
         } else if (languageSP == 1) {
+            locale = new Locale("et");
             estonian.setChecked(true);
         } else if (languageSP == 2) {
+            locale = new Locale("cy");
             welsh.setChecked(true);
-
         }
 
         languages = view.findViewById(R.id.rgLanguages);
@@ -73,16 +74,8 @@ public class LanguageFragment extends Fragment implements RadioGroup.OnCheckedCh
 
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-
         ((NavbarActivity) LanguageFragment.this.getActivity()).switchLang(getView(),editor);
 
-    }
-
-    public void restartActivity() {
-        Intent i = new Intent();
-        i.setClass(getActivity(), NavbarActivity.class);
-        startActivity(i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
 }

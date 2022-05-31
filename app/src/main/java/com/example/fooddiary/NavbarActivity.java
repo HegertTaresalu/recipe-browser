@@ -1,7 +1,9 @@
 package com.example.fooddiary;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,9 +25,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fooddiary.databinding.ActivityNavbarBinding;
 
+import java.util.Locale;
+
 public class NavbarActivity extends AppCompatActivity {
     int NightMode;
-
+    Locale locale;
     SharedPrefs sharedPrefs;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor_theme;
@@ -117,18 +121,33 @@ public class NavbarActivity extends AppCompatActivity {
         RadioButton estonian = view.findViewById(R.id.btnEst);
         RadioButton welsh = view.findViewById(R.id.btnCym);
         if (english.isChecked()) {
+            locale = new Locale("en");
             editor.putInt("languageSP", 0);
             editor.commit();
-            sharedPrefs.setLocale("en");
         } else if (estonian.isChecked()) {
+            locale = new Locale("et");
             editor.putInt("languageSP", 1);
             editor.commit();
-            sharedPrefs.setLocale("et");
         } else if (welsh.isChecked()) {
+            locale = new Locale("cy");
             editor.putInt("languageSP", 2);
             editor.commit();
-            sharedPrefs.setLocale("cy");
         }
 
+        changeLanguage();
+
+    }
+
+    public void changeLanguage() {
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        this.getBaseContext().getResources().updateConfiguration(configuration,
+                this.getBaseContext().getResources().getDisplayMetrics());
+
+        Intent i = new Intent();
+        i.setClass(this, NavbarActivity.class);
+        startActivity(i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 }
