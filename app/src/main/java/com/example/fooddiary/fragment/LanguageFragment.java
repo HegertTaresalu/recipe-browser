@@ -19,8 +19,8 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.example.fooddiary.Activity.NavbarActivity;
 import com.example.fooddiary.MainActivity;
-import com.example.fooddiary.NavbarActivity;
 import com.example.fooddiary.R;
 
 import java.util.Locale;
