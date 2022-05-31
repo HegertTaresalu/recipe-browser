@@ -7,8 +7,9 @@ Projekt sihib luua tervislike toidu brauseri koos kalendriga. Sellega on võimal
 
 Meeskond
 ==================
-Meeskonnas on Hegert Taresalu (juht), Hendris Määr ja Kadi-Katre Kõpper
-
+Meeskonnas on Hegert Taresalu (juht), Hendris Määr.
+Meil pidi olema ka kolmas meeskonna liige, Kadi-Katre Kõpper,
+ta ei osalenud arenduses aktiivselt
 Kuidas käivatada?
 ==================
 Arendamiseks kasutasime Android Studiot
