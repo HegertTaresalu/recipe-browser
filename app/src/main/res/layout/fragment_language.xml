@@ -2,53 +2,52 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.ThemeFragment">
+    tools:context=".fragment.LanguageFragment">
 
     <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="match_parent"
+        android:id="@+id/rgLanguages"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
-            android:id="@+id/darkModeBtn"
+            android:checked="true"
+            android:id="@+id/btnEng"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layoutDirection="rtl"
-            android:text="@string/dark_mode"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
+            android:text="@string/lang_english"
             android:textAlignment="textStart"
 
             />
 
         <RadioButton
-            android:id="@+id/lightModeBtn"
+            android:id="@+id/btnEst"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layoutDirection="rtl"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/light_mode"
+            android:text="@string/lang_estonian"
             android:textAlignment="textStart" />
 
         <RadioButton
-            android:id="@+id/systemDefaultBtn"
+            android:id="@+id/btnCym"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layoutDirection="rtl"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="@string/system_default"
-            android:checked="true"
+            android:text="@string/lang_welsh"
             android:textAlignment="textStart" />
     </RadioGroup>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
