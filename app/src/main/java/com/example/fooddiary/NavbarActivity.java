@@ -111,7 +111,6 @@ public class NavbarActivity extends AppCompatActivity {
     protected void attachBaseContext(Context newBase) {
         sharedPrefs = new SharedPrefs(newBase);
         String languageCode = sharedPrefs.getLocale();
-      //  Context context = LanguageConfig.changeLanguage(newBase, languageCode);
         super.attachBaseContext(newBase);
     }
 

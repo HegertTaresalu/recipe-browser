@@ -14,14 +14,6 @@ import android.widget.RadioButton;
 import com.example.fooddiary.utils.SharedPrefs;
 
 public class MainActivity extends AppCompatActivity {
-    int NightMode;
-
-    //vvv this is a java class vvv
-    SharedPrefs sharedPrefs;
-    //^^^ this is a java class ^^^
-
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor_theme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
