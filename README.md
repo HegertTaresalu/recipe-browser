@@ -10,6 +10,7 @@ Meeskond
 Meeskonnas on Hegert Taresalu (juht), Hendris Määr.
 Meil pidi olema ka kolmas meeskonna liige, Kadi-Katre Kõpper,
 ta ei osalenud arenduses aktiivselt
+
 Kuidas käivatada?
 ==================
 Arendamiseks kasutasime Android Studiot
