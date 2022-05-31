@@ -6,11 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.fooddiary.AuthRepository;
-import com.example.fooddiary.User;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
+import com.example.fooddiary.repository.AuthRepository;
 
 public class LoginViewModel extends AndroidViewModel {
 

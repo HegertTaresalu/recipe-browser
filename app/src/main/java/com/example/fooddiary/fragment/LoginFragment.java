@@ -14,9 +14,8 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.example.fooddiary.NavbarActivity;
+import com.example.fooddiary.Activity.NavbarActivity;
 import com.example.fooddiary.R;
 import com.example.fooddiary.ViewModel.LoginViewModel;
 import com.example.fooddiary.ViewModel.UserViewModel;
@@ -56,10 +55,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), NavbarActivity.class);
                 getActivity().startActivity(intent);
-
             }
         });
-
     }
 
     @Override
