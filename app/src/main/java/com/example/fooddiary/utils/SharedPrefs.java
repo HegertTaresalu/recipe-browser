@@ -3,7 +3,7 @@ package com.example.fooddiary.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.fooddiary.NavbarActivity;
+import com.example.fooddiary.Activity.NavbarActivity;
 
 public class SharedPrefs {
     NavbarActivity navbarActivity;

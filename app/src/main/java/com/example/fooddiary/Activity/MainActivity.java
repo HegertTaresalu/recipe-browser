@@ -1,4 +1,4 @@
-package com.example.fooddiary;
+package com.example.fooddiary.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.RadioButton;
 
 //import com.example.fooddiary.utils.LanguageConfig;
+import com.example.fooddiary.R;
 import com.example.fooddiary.utils.SharedPrefs;
 
 public class MainActivity extends AppCompatActivity {

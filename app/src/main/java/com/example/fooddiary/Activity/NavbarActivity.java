@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.RadioButton;
 
 //import com.example.fooddiary.utils.LanguageConfig;
+import com.example.fooddiary.R;
 import com.example.fooddiary.utils.SharedPrefs;
 import com.google.android.material.navigation.NavigationView;
 

@@ -1,6 +1,10 @@
 package com.example.fooddiary.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,15 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-
-import com.example.fooddiary.Activity.MainActivity;
 import com.example.fooddiary.R;
+
 public class SettingsFragment extends Fragment implements View.OnClickListener {
     NavController navController;
     Button theme;

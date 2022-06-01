@@ -2,6 +2,10 @@ package com.example.fooddiary.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,16 +14,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-
 import com.example.fooddiary.Activity.MainActivity;
-import com.example.fooddiary.Activity.NavbarActivity;
 import com.example.fooddiary.R;
 import com.example.fooddiary.ViewModel.LoginViewModel;
-import com.example.fooddiary.ViewModel.UserViewModel;
 
 public class VerifiedFragment extends Fragment implements View.OnClickListener {
 
@@ -55,7 +52,6 @@ public class VerifiedFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        view.findViewById(R.id.btnCalendar).setOnClickListener(this);
         view.findViewById(R.id.log_out).setOnClickListener(this);
     }
 
@@ -64,9 +60,6 @@ public class VerifiedFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btnCalendar:
-                navController.navigate(R.id.action_nav_profile_to_calendarFragment);
-                break;
             case  R.id.log_out:
                 loginViewModel.logout();
         }

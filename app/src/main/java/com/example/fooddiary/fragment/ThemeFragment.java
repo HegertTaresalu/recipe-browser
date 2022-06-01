@@ -1,18 +1,7 @@
 package com.example.fooddiary.fragment;
 
-import static android.content.Context.MODE_PRIVATE;
-
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +10,14 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.example.fooddiary.MainActivity;
-import com.example.fooddiary.NavbarActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
+import com.example.fooddiary.Activity.NavbarActivity;
 import com.example.fooddiary.R;
-import com.google.android.material.snackbar.Snackbar;
 
 public class ThemeFragment extends Fragment implements RadioGroup.OnCheckedChangeListener {
 

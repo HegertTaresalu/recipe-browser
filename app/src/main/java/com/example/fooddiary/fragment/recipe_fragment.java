@@ -63,10 +63,10 @@ public class recipe_fragment extends Fragment {
         dishType.setText(args.getString("recipe_type"));
         title.setText(args.getString("recipe_title"));
         sourceUrl.setText(args.getString("recipe_src_url"));
-        prepTime.setText(String.valueOf(args.getInt("prep_time")));
-        isDairyFree.setText(String.valueOf(args.getBoolean("isDairy")));
-        isVegetarian.setText(String.valueOf(args.getBoolean("isVegetarian")));
-        isVegan.setText(String.valueOf(args.getBoolean("isVegan")));
+        prepTime.setText(String.valueOf(args.getInt("prep_time")) + " min");
+        isDairyFree.setText("Does contain dairy: " + String.valueOf(args.getBoolean("isDairy")));
+        isVegetarian.setText("Is vegetarian: " + String.valueOf(args.getBoolean("isVegetarian")));
+        isVegan.setText("Is vegan: " + String.valueOf(args.getBoolean("isVegan")));
 
         //TODO show image
        // Picasso.get().load(args.getString("recipe_src_url")).into(image);
