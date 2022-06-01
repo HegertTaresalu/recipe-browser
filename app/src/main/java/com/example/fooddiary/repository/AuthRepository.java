@@ -75,8 +75,9 @@ public class AuthRepository {
                         }
 
                     });
-            }
         }
+
+    }
 
 
         public void logOut(){
