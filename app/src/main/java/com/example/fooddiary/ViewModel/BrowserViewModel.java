@@ -16,11 +16,13 @@ public class BrowserViewModel extends AndroidViewModel{
 
     private final RecipeRepository repository;
     private final MutableLiveData<ArrayList<Recipe>> recipeLiveData;
+    private final MutableLiveData<ArrayList<Recipe>> bookMarkedRecipeLiveData;
 
     public BrowserViewModel(@NonNull Application application) {
        super(application);
        repository = new RecipeRepository(application);
        recipeLiveData = repository.getRecipeLiveData();
+       bookMarkedRecipeLiveData = repository.getBookMarkedRecipeLiveData();
     }
 
     public void getRecipeData(){repository.getRecipeInfo();}
@@ -28,6 +30,12 @@ public class BrowserViewModel extends AndroidViewModel{
     public MutableLiveData<ArrayList<Recipe>> getRecipeLiveData(){
         return recipeLiveData;
     }
+
+    public MutableLiveData<ArrayList<Recipe>> getBookMarkedRecipeLiveData(){
+        return bookMarkedRecipeLiveData;
+    }
+
+
 
 
     public void addData(Bundle args){

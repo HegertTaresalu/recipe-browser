@@ -1,10 +1,12 @@
 package com.example.fooddiary.repository;
 
 import android.app.Application;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.fooddiary.R;
@@ -29,6 +31,7 @@ public class RecipeRepository {
     private static final String URL = "https://api.spoonacular.com/recipes/random?number=8&apiKey=%s";
     private final Application application;
     private final MutableLiveData<ArrayList<Recipe>> recipeLiveData;
+    private final MutableLiveData<ArrayList<Recipe>> bookMarkedRecipeLiveData;
     private  final ArrayList<Recipe> arrayList = new ArrayList<>();
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth firebaseAuth;
@@ -37,6 +40,7 @@ public class RecipeRepository {
         this.application = application;
         recipeLiveData = new MutableLiveData<>();
         firebaseAuth = FirebaseAuth.getInstance();
+        bookMarkedRecipeLiveData = new MutableLiveData<>();
 
     }
 
@@ -51,7 +55,7 @@ public class RecipeRepository {
 
     }
     public MutableLiveData<ArrayList<Recipe>> getRecipeLiveData(){return recipeLiveData;}
-
+    public MutableLiveData<ArrayList<Recipe>> getBookMarkedRecipeLiveData(){return bookMarkedRecipeLiveData;}
 
     private void parseResults(JsonObject result) {
         JsonArray recipes =  result.getAsJsonArray("recipes");
@@ -124,18 +128,20 @@ public class RecipeRepository {
         String userId = firebaseAuth.getCurrentUser().getUid();
 
         db.collection("recipes").document(userId).collection("recipes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()){
                     for (QueryDocumentSnapshot document : task.getResult()){
                         Map<String, Object> recipe_ = document.getData();
 
-                        Recipe recipe = null;
-                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                            recipe = new Recipe(Math.toIntExact((Long)recipe_.get("id")),String.valueOf(recipe_.get("title")),String.valueOf(recipe_.get("recipe_type")),String.valueOf(recipe_.get("url")),Math.toIntExact((Long)recipe_.get("preptime"))
+                           Recipe recipe = new Recipe(Math.toIntExact((Long)recipe_.get("id")),String.valueOf(recipe_.get("title")),String.valueOf(recipe_.get("recipe_type")),String.valueOf(recipe_.get("url")),Math.toIntExact((Long)recipe_.get("preptime"))
                                     ,(Boolean) recipe_.get("isDairyFree"),(Boolean) recipe_.get("isVegetarian"),(Boolean) recipe_.get("isVegan"),String.valueOf(recipe_.get("image")));
-                        }
-                        arrayList.add(recipe);
+                            arrayList.add(recipe);
+                            Log.i("gaming", String.valueOf(recipe));
+                            bookMarkedRecipeLiveData.setValue(arrayList);
+
+
                     }
                 }
             }
