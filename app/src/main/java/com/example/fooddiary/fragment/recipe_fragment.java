@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.fooddiary.R;
 import com.example.fooddiary.ViewModel.BrowserViewModel;
 import com.example.fooddiary.ViewModel.LoginViewModel;
+import com.squareup.picasso.Picasso;
 //import com.squareup.picasso.Picasso;
 
 public class recipe_fragment extends Fragment {
@@ -70,14 +71,13 @@ public class recipe_fragment extends Fragment {
         dishType.setText(args.getString("recipe_type"));
         title.setText(args.getString("recipe_title"));
         sourceUrl.setText(args.getString("recipe_src_url"));
+        Picasso.get().load(args.getString("image")).into(image);
         prepTime.setText(String.valueOf(args.getInt("prep_time")) + " min");
         isDairyFree.setText("Does contain dairy: " + String.valueOf(args.getBoolean("isDairy")));
         isVegetarian.setText("Is vegetarian: " + String.valueOf(args.getBoolean("isVegetarian")));
         isVegan.setText("Is vegan: " + String.valueOf(args.getBoolean("isVegan")));
 
         //TODO show image
-       // Picasso.get().load(args.getString("recipe_src_url")).into(image);
-
 
         return view;
     }
@@ -93,10 +93,6 @@ public class recipe_fragment extends Fragment {
         });
 
         saveDataBtn.setOnClickListener(view1 -> {
-            Runnable runnable = () ->  browserViewModel.getData();
-
-            Thread bgThread = new Thread(runnable);
-            bgThread.start();
 
             Runnable data = () -> browserViewModel.addData(args);
 

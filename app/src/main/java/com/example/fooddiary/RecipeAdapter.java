@@ -41,9 +41,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         holder.title.setText(recipe.getTitle());
         holder.dishType.setText(recipe.getDishType());
         holder.prepTime.setText(Integer.toString(recipe.getReadyIn()) + " min");
+
         holder.cardView.setOnClickListener(view -> {
             args = new Bundle();
             args.putInt("id",recipe.getId());
+            args.putString("image",recipe.getImage());
             args.putString("recipe_title",recipe.getTitle());
             args.putInt("prep_time",recipe.getReadyIn());
             args.putString("recipe_type", recipe.getDishType());
@@ -53,7 +55,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             args.putBoolean("isVegan",recipe.getVegan());
             args.putBoolean("isVegetarian",recipe.getVegetarian());
             navController = Navigation.findNavController(view);
-            navController.navigate(R.id.action_nav_browser_to_recipe_fragment,args);
+            navController.navigate(R.id.recipe_fragment,args);
         });
 
     }

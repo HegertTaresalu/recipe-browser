@@ -41,10 +41,8 @@ public class BrowserFragment extends Fragment {
 
         browserViewModel.getRecipeLiveData()
                 .observe(getViewLifecycleOwner(),recipes ->
-                                 recipeAdapter.setRecipeList(recipes)
-
+                        recipeAdapter.setRecipeList(recipes)
                 );
-
 
 
         RecyclerView recyclerView = view.findViewById(R.id.recipeRecycler);

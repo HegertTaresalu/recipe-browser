@@ -45,7 +45,7 @@ public class RecipeRepository {
     }
 
     public void getRecipeInfo(/*int id*/) {
-        if (arrayList.size() < 10)
+        if (arrayList.size() == 0)
         {
             Ion.with(application).load(String.format(URL, /*id,*/ API_KEY)).asJsonObject().setCallback((e, result) -> {
                 Log.i("gaming",String.format(URL,/* id,*/ API_KEY));
@@ -77,6 +77,7 @@ public class RecipeRepository {
                 image = null;
                 if (recipe.has("image")){
                      image = recipe.get("image").getAsString();
+                     Log.i("image",image);
                 }
                 int readyIn = recipe.get("readyInMinutes").getAsInt();
                  type = application.getString(R.string.dishtype);
@@ -103,7 +104,10 @@ public class RecipeRepository {
 
 
     public void saveRecipe(Bundle args){
+
         String userId = firebaseAuth.getCurrentUser().getUid();
+
+
         Map<String, Object> recipe = new HashMap<>();
         recipe.put("id",args.getInt("id"));
         recipe.put("title",args.getString("recipe_title"));
@@ -127,16 +131,19 @@ public class RecipeRepository {
     public void getRecipes(){
         String userId = firebaseAuth.getCurrentUser().getUid();
 
+        arrayList.clear();
         db.collection("recipes").document(userId).collection("recipes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()){
                     for (QueryDocumentSnapshot document : task.getResult()){
                         Map<String, Object> recipe_ = document.getData();
 
-                           Recipe recipe = new Recipe(Math.toIntExact((Long)recipe_.get("id")),String.valueOf(recipe_.get("title")),String.valueOf(recipe_.get("recipe_type")),String.valueOf(recipe_.get("url")),Math.toIntExact((Long)recipe_.get("preptime"))
-                                    ,(Boolean) recipe_.get("isDairyFree"),(Boolean) recipe_.get("isVegetarian"),(Boolean) recipe_.get("isVegan"),String.valueOf(recipe_.get("image")));
+                        Recipe recipe = null;
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                            recipe = new Recipe(Math.toIntExact((Long)recipe_.get("id")),String.valueOf(recipe_.get("title")),String.valueOf(recipe_.get("recipe_type")),String.valueOf(recipe_.get("url")),Math.toIntExact((Long)recipe_.get("preptime"))
+                                     ,(Boolean) recipe_.get("isDairyFree"),(Boolean) recipe_.get("isVegetarian"),(Boolean) recipe_.get("isVegan"),String.valueOf(recipe_.get("image")));
+                        }
                             arrayList.add(recipe);
                             Log.i("gaming", String.valueOf(recipe));
                             bookMarkedRecipeLiveData.setValue(arrayList);
