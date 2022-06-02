@@ -1,6 +1,7 @@
 package com.example.fooddiary.ViewModel;
 
 import android.app.Application;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -26,5 +27,13 @@ public class BrowserViewModel extends AndroidViewModel{
 
     public MutableLiveData<ArrayList<Recipe>> getRecipeLiveData(){
         return recipeLiveData;
+    }
+
+
+    public void addData(Bundle args){
+        repository.saveRecipe(args);
+    }
+    public void getData(){
+        repository.getRecipes();
     }
 }

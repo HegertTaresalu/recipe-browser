@@ -1,17 +1,28 @@
 package com.example.fooddiary.repository;
 
 import android.app.Application;
+import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.fooddiary.R;
 import com.example.fooddiary.models.Recipe;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.koushikdutta.ion.Ion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RecipeRepository {
     private static final String API_KEY = "fe722c39854643239dc98f5ef524d6a2";
@@ -19,10 +30,14 @@ public class RecipeRepository {
     private final Application application;
     private final MutableLiveData<ArrayList<Recipe>> recipeLiveData;
     private  final ArrayList<Recipe> arrayList = new ArrayList<>();
-
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth firebaseAuth;
+    public static final String TAG = "RecipeRepository";
     public RecipeRepository(Application application) {
         this.application = application;
         recipeLiveData = new MutableLiveData<>();
+        firebaseAuth = FirebaseAuth.getInstance();
+
     }
 
     public void getRecipeInfo(/*int id*/) {
@@ -79,6 +94,52 @@ public class RecipeRepository {
 
         }
 
+    }
+
+
+
+    public void saveRecipe(Bundle args){
+        String userId = firebaseAuth.getCurrentUser().getUid();
+        Map<String, Object> recipe = new HashMap<>();
+        recipe.put("id",args.getInt("id"));
+        recipe.put("title",args.getString("recipe_title"));
+        recipe.put("recipe_type",args.getString("recipe_type"));
+        recipe.put("url",args.getString("recipe_src_url"));
+        recipe.put("preptime",args.getInt("prep_time"));
+        recipe.put("isDairyFree",args.getBoolean("isDairy"));
+        recipe.put("isVegetarian",args.getBoolean("isVegetarian"));
+        recipe.put("isVegan",args.getBoolean("isVegan"));
+        recipe.put("image",args.getString("recipe_src_url"));
+        db.collection("recipes").document(userId).collection("recipes").document(String.valueOf(args.getInt("id"))).set(recipe)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.i(TAG, "DocumentSnapshot successfully written!");
+                    }
+                });
+
+    }
+
+    public void getRecipes(){
+        String userId = firebaseAuth.getCurrentUser().getUid();
+
+        db.collection("recipes").document(userId).collection("recipes").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    for (QueryDocumentSnapshot document : task.getResult()){
+                        Map<String, Object> recipe_ = document.getData();
+
+                        Recipe recipe = null;
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                            recipe = new Recipe(Math.toIntExact((Long)recipe_.get("id")),String.valueOf(recipe_.get("title")),String.valueOf(recipe_.get("recipe_type")),String.valueOf(recipe_.get("url")),Math.toIntExact((Long)recipe_.get("preptime"))
+                                    ,(Boolean) recipe_.get("isDairyFree"),(Boolean) recipe_.get("isVegetarian"),(Boolean) recipe_.get("isVegan"),String.valueOf(recipe_.get("image")));
+                        }
+                        arrayList.add(recipe);
+                    }
+                }
+            }
+        });
     }
 }
 

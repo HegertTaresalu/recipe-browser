@@ -36,7 +36,7 @@ public class recipe_fragment extends Fragment {
     Button button;
     Button saveDataBtn;
     NavController navController;
-    LoginViewModel loginViewModel;
+    BrowserViewModel browserViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class recipe_fragment extends Fragment {
         isDairyFree = view.findViewById(R.id.recipeIsDairyFree);
         isVegetarian = view.findViewById(R.id.isVegetarian);
         isVegan = view.findViewById(R.id.isVeganTxt);
-        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        browserViewModel = new ViewModelProvider(this).get(BrowserViewModel.class);
 
         args = getArguments();
         dishType.setText(args.getString("recipe_type"));
@@ -93,7 +93,18 @@ public class recipe_fragment extends Fragment {
         });
 
         saveDataBtn.setOnClickListener(view1 -> {
-            loginViewModel.addData(args);
+            Runnable runnable = () ->  browserViewModel.getData();
+
+            Thread bgThread = new Thread(runnable);
+            bgThread.start();
+
+            Runnable data = () -> browserViewModel.addData(args);
+
+            Thread addData = new Thread(data);
+            addData.start();
+
+
+
         });
 
     }

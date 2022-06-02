@@ -28,14 +28,15 @@ public class LoginViewModel extends AndroidViewModel {
 
     }
 
-    public void addData(Bundle args){
-        authRepository.saveRecipe(args);
-    }
 
     public MutableLiveData getUserMutableLiveData(){
 
         return userMutableData;
     }
+
+
+
+
     public void Login(String email, String password){
         authRepository.logIn(email,password);
     }
