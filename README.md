@@ -2,9 +2,9 @@
 	
 ==================
 Projekt sihib luua tervislike toidu brauseri koos kalendriga. Sellega on võimalik:
-	-Eraldada soovimatuid toite brauserist;
-	-Lisada järjehoidja retseptidele;
-	-Kalendrisse saab märkida, mida on söödud mis päeval koos kasutaja poolt toodud märkmetega.
+-Eraldada soovimatuid toite brauserist;
+-Lisada järjehoidja retseptidele;
+-Kalendrisse saab märkida, mida on söödud mis päeval koos kasutaja poolt toodud märkmetega.
 
 Meeskond
 ==================
