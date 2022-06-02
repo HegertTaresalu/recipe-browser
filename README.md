@@ -1,6 +1,5 @@
     Mis on projekt?
 	
-==================
 Projekt sihib luua tervislike toidu brauseri koos kalendriga. Sellega on võimalik:
 -Eraldada soovimatuid toite brauserist;
 -Lisada järjehoidja retseptidele;
