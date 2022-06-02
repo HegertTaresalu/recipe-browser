@@ -54,4 +54,12 @@
     <string name="lang_english">English</string>
     <string name="lang_estonian">Eesti</string>
     <string name="lang_welsh">Cymraeg</string>
+
+
+    <string name="menu_home">Hafan</string>
+    <string name="menu_gallery">Oriel</string>
+    <string name="menu_slideshow">Pwynt pwer</string>
+    <string name="dishtype">Dim</string>
+    <string name="theme">Thema</string>
+    <string name="language">Iaith</string>
 </resources>

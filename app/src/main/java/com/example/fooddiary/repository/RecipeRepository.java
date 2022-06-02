@@ -48,10 +48,7 @@ public class RecipeRepository {
             Log.i("recipes", String.valueOf(recipes.size()));
             Log.i("recipes", String.valueOf(i));
 
-                //weird bug that happens by chance
-                //sometimes when starting the application from start and choosing browser from menu
-                //the application has to restart the view and/or it crashes
-                //it maybe happens because api is slow also probably because we haven't implemented multiple threads
+
                 Log.i("reciperepo","reciperepos");
                 JsonObject recipe = (JsonObject) recipes.get(i);
 

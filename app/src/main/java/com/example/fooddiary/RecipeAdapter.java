@@ -43,6 +43,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         holder.prepTime.setText(Integer.toString(recipe.getReadyIn()) + " min");
         holder.cardView.setOnClickListener(view -> {
             args = new Bundle();
+            args.putInt("id",recipe.getId());
             args.putString("recipe_title",recipe.getTitle());
             args.putInt("prep_time",recipe.getReadyIn());
             args.putString("recipe_type", recipe.getDishType());

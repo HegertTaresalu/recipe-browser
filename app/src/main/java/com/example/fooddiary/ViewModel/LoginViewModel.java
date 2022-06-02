@@ -1,6 +1,7 @@
 package com.example.fooddiary.ViewModel;
 
 import android.app.Application;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -26,6 +27,11 @@ public class LoginViewModel extends AndroidViewModel {
 
 
     }
+
+    public void addData(Bundle args){
+        authRepository.saveRecipe(args);
+    }
+
     public MutableLiveData getUserMutableLiveData(){
 
         return userMutableData;

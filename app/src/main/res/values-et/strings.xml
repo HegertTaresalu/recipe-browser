@@ -55,4 +55,11 @@
     <string name="lang_estonian">Eesti</string>
     <string name="lang_welsh">Cymraeg</string>
 
+    <string name="menu_home">Kodu</string>
+<string name="menu_gallery">Galerii</string>
+<string name="menu_slideshow">Slaidiesitlus</string>
+<string name="dishtype">Puudub</string>
+<string name="theme">Teema</string>
+<string name="language">Keel</string>
+
 </resources>

@@ -2,6 +2,7 @@ package com.example.fooddiary.repository;
 
 import android.app.Application;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -9,11 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.fooddiary.R;
+import com.example.fooddiary.models.Recipe;
 import com.example.fooddiary.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -44,7 +49,6 @@ public class AuthRepository {
         if (firebaseAuth.getCurrentUser() != null) {
             userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
             loggedOutMutableLiveData.postValue(false);
-            //loadUserData();
         }
 
     }
@@ -78,6 +82,29 @@ public class AuthRepository {
         }
 
     }
+
+    public void saveRecipe(Bundle args){
+        String userId = firebaseAuth.getCurrentUser().getUid();
+        Map<String, Object> recipe = new HashMap<>();
+
+        recipe.put("title",args.getString("recipe_title"));
+        recipe.put("recipe_Type",args.getString("recipe_type"));
+        recipe.put("url",args.getString("recipe_src_url"));
+        recipe.put("preptime",args.getInt("prep_time"));
+        recipe.put("isDairyFree",args.getBoolean("isDairy"));
+        recipe.put("isVegetarian",args.getBoolean("isVegetarian"));
+        recipe.put("isVegan",args.getBoolean("isVegan"));
+
+        db.collection("recipes").document(userId).collection("recipes").document(String.valueOf(args.getInt("id"))).set(recipe)
+        .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.i(TAG, "DocumentSnapshot successfully written!");
+            }
+        });
+
+    }
+
 
 
         public void logOut(){
