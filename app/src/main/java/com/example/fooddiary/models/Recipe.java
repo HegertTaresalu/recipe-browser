@@ -10,8 +10,13 @@ public class Recipe  {
     private final Boolean dairyFree;
     private final Boolean vegetarian;
     private final Boolean vegan;
+    private final String summary;
 
-    public Recipe(int id, String title, String dishType, String sourceUrl, int readyIn, Boolean dairyFree, Boolean vegetarian, Boolean vegan,String image) {
+    public String getSummary() {
+        return summary;
+    }
+
+    public Recipe(int id, String title, String dishType, String sourceUrl, int readyIn, Boolean dairyFree, Boolean vegetarian, Boolean vegan, String image, String summary) {
         this.id = id;
         this.title = title;
         this.image = image;
@@ -21,6 +26,7 @@ public class Recipe  {
         this.dairyFree = dairyFree;
         this.vegetarian = vegetarian;
         this.vegan = vegan;
+        this.summary = summary;
 
     }
 
@@ -43,6 +49,7 @@ public class Recipe  {
     public Boolean getVegetarian() { return vegetarian; }
 
     public Boolean getVegan() { return vegan; }
+
 
 
 }

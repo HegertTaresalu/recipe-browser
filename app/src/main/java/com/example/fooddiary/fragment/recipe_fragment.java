@@ -1,15 +1,7 @@
 package com.example.fooddiary.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.widget.TextViewKt;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -23,9 +15,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import com.example.fooddiary.R;
 import com.example.fooddiary.ViewModel.BrowserViewModel;
-import com.example.fooddiary.ViewModel.LoginViewModel;
 import com.squareup.picasso.Picasso;
 //import com.squareup.picasso.Picasso;
 
@@ -43,6 +41,7 @@ public class recipe_fragment extends Fragment {
     Button button;
     NavController navController;
     BrowserViewModel browserViewModel;
+    TextView summary;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +54,7 @@ public class recipe_fragment extends Fragment {
 
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,6 +71,7 @@ public class recipe_fragment extends Fragment {
         isDairyFree = view.findViewById(R.id.recipeIsDairyFree);
         isVegetarian = view.findViewById(R.id.isVegetarian);
         isVegan = view.findViewById(R.id.isVeganTxt);
+        summary = view.findViewById(R.id.summaryTxt);
         browserViewModel = new ViewModelProvider(this).get(BrowserViewModel.class);
 
         args = getArguments();
@@ -83,12 +84,14 @@ public class recipe_fragment extends Fragment {
         String text = "<a href ="+url+">Link</a>";
         sourceUrl.setText(Html.fromHtml(text));
         Picasso.get().load(args.getString("image")).into(image);
-        prepTime.setText(String.valueOf(args.getInt("prep_time")) + " min");
-        isDairyFree.setText("Does contain dairy: " + String.valueOf(args.getBoolean("isDairy")));
-        isVegetarian.setText("Is vegetarian: " + String.valueOf(args.getBoolean("isVegetarian")));
-        isVegan.setText("Is vegan: " + String.valueOf(args.getBoolean("isVegan")));
+        prepTime.setText("Ready in " + args.getInt("prep_time") + " min");
+        isDairyFree.setText("Does contain dairy: " + args.getBoolean("isDairy"));
+        isVegetarian.setText("Is vegetarian: " + args.getBoolean("isVegetarian"));
+        isVegan.setText("Is vegan: " + args.getBoolean("isVegan"));
+        summary.setClickable(true);
+        summary.setMovementMethod(LinkMovementMethod.getInstance());
+        summary.setText(Html.fromHtml(args.getString("summary")));
 
-        //TODO show image
 
         return view;
     }
@@ -128,9 +131,11 @@ public class recipe_fragment extends Fragment {
             break;
             case R.id.delete_recipe:
 
-                browserViewModel.deleteData(args.getInt("id"));
+            Runnable data_ = () -> browserViewModel.deleteData(args.getInt("id"));
+            Thread addData_ = new Thread(data_);
+            addData_.start();
 
-
+            break;
 
         }
         return super.onOptionsItemSelected(item);

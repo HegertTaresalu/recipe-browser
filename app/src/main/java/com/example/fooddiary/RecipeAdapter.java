@@ -54,6 +54,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             args.putBoolean("isDairy",recipe.getDairyFree());
             args.putBoolean("isVegan",recipe.getVegan());
             args.putBoolean("isVegetarian",recipe.getVegetarian());
+            args.putString("summary",recipe.getSummary());
             navController = Navigation.findNavController(view);
             navController.navigate(R.id.recipe_fragment,args);
         });

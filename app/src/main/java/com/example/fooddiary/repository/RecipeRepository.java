@@ -92,8 +92,10 @@ public class RecipeRepository {
                 Boolean dairyFree = recipe.get("dairyFree").getAsBoolean();
                 Boolean vegetarian = recipe.get("vegetarian").getAsBoolean();
                 Boolean vegan = recipe.get("vegan").getAsBoolean();
+                String summary = recipe.get("summary").getAsString();
 
-                Recipe final_recipe = new Recipe(id, title, type, sourceUrl, readyIn, dairyFree, vegetarian, vegan,image);
+
+                Recipe final_recipe = new Recipe(id, title, type, sourceUrl, readyIn, dairyFree, vegetarian, vegan,image,summary);
                 arrayList.add(final_recipe);
                 Log.i("gaming", String.valueOf(final_recipe.getDishType()));
                 recipeLiveData.setValue(arrayList);
@@ -143,7 +145,7 @@ public class RecipeRepository {
                         Recipe recipe = null;
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                             recipe = new Recipe(Math.toIntExact((Long)recipe_.get("id")),String.valueOf(recipe_.get("title")),String.valueOf(recipe_.get("recipe_type")),String.valueOf(recipe_.get("url")),Math.toIntExact((Long)recipe_.get("preptime"))
-                                     ,(Boolean) recipe_.get("isDairyFree"),(Boolean) recipe_.get("isVegetarian"),(Boolean) recipe_.get("isVegan"),String.valueOf(recipe_.get("image")));
+                                     ,(Boolean) recipe_.get("isDairyFree"),(Boolean) recipe_.get("isVegetarian"),(Boolean) recipe_.get("isVegan"),String.valueOf(recipe_.get("image")),String.valueOf("summary"));
                         }
                             arrayList.add(recipe);
                             Log.i("gaming", String.valueOf(recipe));
