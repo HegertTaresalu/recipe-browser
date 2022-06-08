@@ -44,4 +44,9 @@ public class BrowserViewModel extends AndroidViewModel{
     public void getData(){
         repository.getRecipes();
     }
+
+    public void deleteData(int id){
+        repository.deleteRecipe(id);
+
+    }
 }

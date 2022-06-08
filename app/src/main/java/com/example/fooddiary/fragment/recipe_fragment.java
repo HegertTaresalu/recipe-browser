@@ -12,7 +12,11 @@ import androidx.navigation.Navigation;
 
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -37,7 +41,6 @@ public class recipe_fragment extends Fragment {
     TextView isVegan;
     Bundle args;
     Button button;
-    Button saveDataBtn;
     NavController navController;
     BrowserViewModel browserViewModel;
 
@@ -57,7 +60,8 @@ public class recipe_fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_recipe, container, false);
-        saveDataBtn = view.findViewById(R.id.bookMarkBtn);
+        setHasOptionsMenu(true);
+
         button = view.findViewById(R.id.calendarBtn);
         dishType = view.findViewById(R.id.recipeDishTypeTxt);
         title = view.findViewById(R.id.recipeTitleTxt);
@@ -94,20 +98,41 @@ public class recipe_fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
 
-
         button.setOnClickListener(view1 -> {
             navController.navigate(R.id.action_recipe_fragment_to_calendarFragment,args);
 
         });
 
-        saveDataBtn.setOnClickListener(view1 -> {
+
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.save_menu,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Log.i("item", String.valueOf(item.getItemId()));
+        Log.i("saverecioe", String.valueOf(R.id.save_recipe));
+        switch (item.getItemId()){
+
+            case R.id.save_recipe:
 
             Runnable data = () -> browserViewModel.addData(args);
-
             Thread addData = new Thread(data);
             addData.start();
 
-        });
+            break;
+            case R.id.delete_recipe:
 
+                browserViewModel.deleteData(args.getInt("id"));
+
+
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

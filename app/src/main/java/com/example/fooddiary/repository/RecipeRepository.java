@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.fooddiary.R;
 import com.example.fooddiary.models.Recipe;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -153,6 +154,27 @@ public class RecipeRepository {
                 }
             }
         });
+    }
+
+
+    public void deleteRecipe(int id){
+        String userId = firebaseAuth.getCurrentUser().getUid();
+
+        db.collection("recipes").document(userId).collection("recipes").document(String.valueOf(id))
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
+
     }
 }
 
