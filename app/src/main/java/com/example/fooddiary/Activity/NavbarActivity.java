@@ -29,7 +29,7 @@ import com.example.fooddiary.databinding.ActivityNavbarBinding;
 import java.util.Locale;
 
 public class NavbarActivity extends AppCompatActivity {
-    int NightMode;
+    int nightMode;
     Locale locale;
     SharedPrefs sharedPrefs;
     SharedPreferences sharedPreferences;
@@ -44,8 +44,8 @@ public class NavbarActivity extends AppCompatActivity {
 
         //theme
         sharedPreferences = getSharedPreferences("SharedPrefs", MODE_PRIVATE);
-        NightMode = sharedPreferences.getInt("NightModeInt", 1);
-        AppCompatDelegate.setDefaultNightMode(NightMode);
+        nightMode = sharedPreferences.getInt("NightModeInt", 1);
+        AppCompatDelegate.setDefaultNightMode(nightMode);
 
 
         //navigation bar
@@ -60,8 +60,8 @@ public class NavbarActivity extends AppCompatActivity {
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_navbar);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+       NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+       NavigationUI.setupWithNavController(navigationView, navController);
     }
 
     //theme
@@ -69,12 +69,12 @@ public class NavbarActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        NightMode = AppCompatDelegate.getDefaultNightMode();
+        nightMode = AppCompatDelegate.getDefaultNightMode();
 
         sharedPreferences = getSharedPreferences("SharedPrefs", MODE_PRIVATE);
         editor_theme = sharedPreferences.edit();
 
-        editor_theme.putInt("NightModeInt", NightMode);
+        editor_theme.putInt("NightModeInt", nightMode);
         editor_theme.apply();
     }
 

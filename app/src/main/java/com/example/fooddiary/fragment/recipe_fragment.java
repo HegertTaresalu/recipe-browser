@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +72,12 @@ public class recipe_fragment extends Fragment {
         args = getArguments();
         dishType.setText(args.getString("recipe_type"));
         title.setText(args.getString("recipe_title"));
-        sourceUrl.setText(args.getString("recipe_src_url"));
+        sourceUrl.setClickable(true);
+        sourceUrl.setMovementMethod(LinkMovementMethod.getInstance());
+        String url = args.getString("recipe_src_url");
+
+        String text = "<a href ="+url+">Link</a>";
+        sourceUrl.setText(Html.fromHtml(text));
         Picasso.get().load(args.getString("image")).into(image);
         prepTime.setText(String.valueOf(args.getInt("prep_time")) + " min");
         isDairyFree.setText("Does contain dairy: " + String.valueOf(args.getBoolean("isDairy")));
@@ -87,6 +94,7 @@ public class recipe_fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
 
+
         button.setOnClickListener(view1 -> {
             navController.navigate(R.id.action_recipe_fragment_to_calendarFragment,args);
 
@@ -98,8 +106,6 @@ public class recipe_fragment extends Fragment {
 
             Thread addData = new Thread(data);
             addData.start();
-
-
 
         });
 
