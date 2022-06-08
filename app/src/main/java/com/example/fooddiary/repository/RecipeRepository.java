@@ -120,7 +120,8 @@ public class RecipeRepository {
         recipe.put("isDairyFree",args.getBoolean("isDairy"));
         recipe.put("isVegetarian",args.getBoolean("isVegetarian"));
         recipe.put("isVegan",args.getBoolean("isVegan"));
-        recipe.put("image",args.getString("recipe_src_url"));
+        recipe.put("image",args.getString("recipe_image"));
+        recipe.put("summary",args.getString("summary"));
         db.collection("recipes").document(userId).collection("recipes").document(String.valueOf(args.getInt("id"))).set(recipe)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -145,7 +146,7 @@ public class RecipeRepository {
                         Recipe recipe = null;
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                             recipe = new Recipe(Math.toIntExact((Long)recipe_.get("id")),String.valueOf(recipe_.get("title")),String.valueOf(recipe_.get("recipe_type")),String.valueOf(recipe_.get("url")),Math.toIntExact((Long)recipe_.get("preptime"))
-                                     ,(Boolean) recipe_.get("isDairyFree"),(Boolean) recipe_.get("isVegetarian"),(Boolean) recipe_.get("isVegan"),String.valueOf(recipe_.get("image")),String.valueOf("summary"));
+                                     ,(Boolean) recipe_.get("isDairyFree"),(Boolean) recipe_.get("isVegetarian"),(Boolean) recipe_.get("isVegan"),String.valueOf(recipe_.get("image")),String.valueOf(recipe_.get("summary")));
                         }
                             arrayList.add(recipe);
                             Log.i("gaming", String.valueOf(recipe));

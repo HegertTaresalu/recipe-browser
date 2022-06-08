@@ -26,7 +26,6 @@ public class BookmarkFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_bookmark, container, false);
         browserViewModel = new ViewModelProvider(this).get(BrowserViewModel.class);
 
-        Log.i("gaming", String.valueOf(browserViewModel.getBookMarkedRecipeLiveData()));
         browserViewModel.getData();
         browserViewModel.getBookMarkedRecipeLiveData()
                 .observe(getViewLifecycleOwner(),recipes ->
