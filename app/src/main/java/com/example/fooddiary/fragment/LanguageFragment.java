@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -23,6 +24,7 @@ import com.example.fooddiary.Activity.NavbarActivity;
 import com.example.fooddiary.R;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class LanguageFragment extends Fragment implements RadioGroup.OnCheckedChangeListener {
     NavbarActivity navbarActivity;
@@ -43,6 +45,7 @@ public class LanguageFragment extends Fragment implements RadioGroup.OnCheckedCh
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getString(R.string.language));
         return inflater.inflate(R.layout.fragment_language, container, false);
     }
 

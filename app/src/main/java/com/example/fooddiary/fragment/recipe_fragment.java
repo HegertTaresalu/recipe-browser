@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -25,6 +26,8 @@ import androidx.navigation.Navigation;
 import com.example.fooddiary.R;
 import com.example.fooddiary.ViewModel.BrowserViewModel;
 import com.squareup.picasso.Picasso;
+
+import java.util.Objects;
 //import com.squareup.picasso.Picasso;
 
 public class recipe_fragment extends Fragment {
@@ -58,7 +61,7 @@ public class recipe_fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getString(R.string.drawer_browser));
         View view = inflater.inflate(R.layout.fragment_recipe, container, false);
         setHasOptionsMenu(true);
 
@@ -103,10 +106,7 @@ public class recipe_fragment extends Fragment {
 
         button.setOnClickListener(view1 -> {
             navController.navigate(R.id.action_recipe_fragment_to_calendarFragment,args);
-
         });
-
-
     }
 
 

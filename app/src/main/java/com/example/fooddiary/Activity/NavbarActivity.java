@@ -41,7 +41,6 @@ public class NavbarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //theme
         sharedPreferences = getSharedPreferences("SharedPrefs", MODE_PRIVATE);
         nightMode = sharedPreferences.getInt("NightModeInt", 1);
@@ -63,6 +62,7 @@ public class NavbarActivity extends AppCompatActivity {
        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
        NavigationUI.setupWithNavController(navigationView, navController);
     }
+
 
     //theme
     @Override

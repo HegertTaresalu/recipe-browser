@@ -8,11 +8,14 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.fooddiary.R;
+
+import java.util.Objects;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
     NavController navController;
@@ -31,6 +34,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getString(R.string.drawer_settings));
         return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 

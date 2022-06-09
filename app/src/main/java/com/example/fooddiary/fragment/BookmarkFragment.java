@@ -2,6 +2,7 @@ package com.example.fooddiary.fragment;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +17,8 @@ import com.example.fooddiary.R;
 import com.example.fooddiary.RecipeAdapter;
 import com.example.fooddiary.ViewModel.BrowserViewModel;
 
+import java.util.Objects;
+
 public class BookmarkFragment extends Fragment {
     private RecipeAdapter recipeAdapter;
     BrowserViewModel browserViewModel;
@@ -23,6 +26,7 @@ public class BookmarkFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getString(R.string.drawer_bookmarks));
         View view =  inflater.inflate(R.layout.fragment_bookmark, container, false);
         browserViewModel = new ViewModelProvider(this).get(BrowserViewModel.class);
 

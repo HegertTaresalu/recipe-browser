@@ -12,12 +12,15 @@ import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.fooddiary.Activity.NavbarActivity;
 import com.example.fooddiary.R;
+
+import java.util.Objects;
 
 public class ThemeFragment extends Fragment implements RadioGroup.OnCheckedChangeListener {
 
@@ -41,6 +44,7 @@ public class ThemeFragment extends Fragment implements RadioGroup.OnCheckedChang
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle(getString(R.string.theme));
         return inflater.inflate(R.layout.fragment_theme, container, false);
     }
 
